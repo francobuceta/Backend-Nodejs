@@ -25,10 +25,11 @@ router.post("/", async (req, res) => {
     res.json({message:"Carrito creado con éxito"});
 });
 
-router.post("/:cid/:product/:pid", async (req, res) => {
-    const {cid, product, pid} = req.params;
+router.post("/:cid/product/:pid", async (req, res) => {
+    const {cid, pid} = req.params;
+    console.log(typeof cid);
 
-    await cart.addProductToCart(cid, product, pid);
+    await cart.addProductToCart(parseInt(cid), parseInt(pid));
 
     res.json({message:"Producto agregado con éxito"});
 })

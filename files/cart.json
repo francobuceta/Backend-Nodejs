@@ -12,11 +12,11 @@
             },
             {
                 "product": 2,
-                "quantity": 2
+                "quantity": 4
             },
             {
                 "product": 3,
-                "quantity": 4
+                "quantity": 24
             }
         ]
     },

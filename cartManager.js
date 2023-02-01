@@ -69,13 +69,13 @@ export default class CartManager {
         }
     }
 
-    async addProductToCart(idCart, idProduct, quantity) {
+    async addProductToCart(idCart, idProduct) {
         let newProduct;
         const cartId = await this.getCartById(idCart);
         const array = await this.getCart();
         let arrayProducts = cartId.products.find(elem => elem.product === idProduct);
 
-        if (quantity < 1 ) {
+        if (idProduct < 1 || idProduct > cartId.products.length) {
             console.log("Error: Invalid quantity");
         } else if (arrayProducts) { 
             arrayProducts = {
@@ -87,7 +87,7 @@ export default class CartManager {
         } else {
             newProduct = {
                 product: idProduct,
-                quantity: quantity
+                quantity: 1
             }
 
             try {
@@ -120,4 +120,4 @@ const cart = new CartManager();
 
 //cart.createCart();
 //cart.getCartById(2);
-cart.addProductToCart(2, 3, 2);
+//cart.addProductToCart(2, 3);
