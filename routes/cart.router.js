@@ -25,6 +25,7 @@ router.post("/", async (req, res) => {
     res.json({message:"Carrito creado con éxito"});
 });
 
+//Agregar producto a carrito
 router.post("/:cid/product/:pid", async (req, res) => {
     const {cid, pid} = req.params;
     console.log(typeof cid);

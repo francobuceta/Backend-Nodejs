@@ -100,20 +100,6 @@ export default class CartManager {
             }
         }
     }
-
-    /* async addQuantity(idCart, productId) {
-        let array = await this.getCart();
-        let cartId = await this.getCartById(idCart);
-
-        cartId.products.
-
-        try {
-            await promises.writeFile(this.path, JSON.stringify(array));
-            return true;
-        } catch (error) {
-            console.log("Error: No se pudo aumentar cantidad de producto");
-        }   
-    } */
 }
 
 //Instancia
