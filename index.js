@@ -24,7 +24,7 @@ export default class ProductManager {
         const { title, description, price, thumbnail, code, stock, category, status } = obj;
         let newProduct;
         let array = await this.getProducts();
-        const codeProduct = array.find(prod => prod.code === code)
+        const codeProduct = array.find(prod => prod.code === code);
 
         if (!title || !description || !price || !thumbnail || !code || !stock || !category || status === "") {
             console.log("Error: Missing field");

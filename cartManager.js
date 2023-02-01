@@ -6,63 +6,118 @@ export default class CartManager {
         this.path = "./files/cart.json";
     }
 
-    async getCartProducts() {
+    async getCart() {
         try {
             if (existsSync(this.path)) {
-                const products = await promises.readFile(this.path, "utf-8");
-                const productsParse = JSON.parse(products);
-                return productsParse;
+                const cart = await promises.readFile(this.path, "utf-8");
+                const cartParse = JSON.parse(cart);
+                return cartParse;
             } else {
                 return [];
             }
         } catch (error) {
-            console.log("Error: No se encontro producto");
+            console.log("Error: No se encontro carrito");
         }
     }
 
-    async getCartProductsById(idCart) {
+    async generateId() {
+        let id = 1;
+
+        try {
+            let idCart = await this.getCart();
+
+            if (idCart.length !== 0) {
+                id = idCart[idCart.length - 1].id + 1;
+            }
+        } catch (error) {
+            console.log("Error: No se pudo generar Id");
+        }
         
-        const array = await this.getCartProducts();
-        const newArray = array.find(product => product.id === idCart);
+        return id;
+    }
+
+    async getCartById(idCart) {
+        
+        const array = await this.getCart();
+        const newArray = array.find(cart => cart.id === idCart);
         
         if (newArray) {
             return newArray;
         } 
         
-        return console.log("Error: No se encontro producto");
+        return console.log("Error: No se encontro el carrito");
     }
 
-    async addProduct(obj) {
-        const { title, description, price, thumbnail, code, stock, category, status } = obj;
-        let newProduct;
-        let array = await this.getProducts();
-        const codeProduct = array.find(prod => prod.code === code)
+    async createCart() {
+        const cart = {
+            id: await this.generateId(),
+            products: [],
+        }
 
-        if (!title || !description || !price || !thumbnail || !code || !stock || !category || status === "") {
-            console.log("Error: Missing field");
-        } else if (codeProduct){
-            console.log("Error: Code already exists");
+        try {
+            if (existsSync(this.path)) {
+                let array = await this.getCart();
+                array.push(cart);
+                await promises.writeFile(this.path, JSON.stringify(array));
+            } else {
+                let cartArray = [];
+                cartArray.push(cart);
+                await promises.writeFile(this.path, JSON.stringify(cartArray));
+            }
+        } catch (error) {
+            console.log("No se pudo crear el carrito");
+        }
+    }
+
+    async addProductToCart(idCart, idProduct, quantity) {
+        let newProduct;
+        const cartId = await this.getCartById(idCart);
+        const array = await this.getCart();
+        let arrayProducts = cartId.products.find(elem => elem.product === idProduct);
+
+        if (quantity < 1 ) {
+            console.log("Error: Invalid quantity");
+        } else if (arrayProducts) { 
+            arrayProducts = {
+                product: idProduct,
+                quantity: arrayProducts.quantity + 1
+            };
+            array[idCart - 1].products[idProduct - 1] = arrayProducts;
+            await promises.writeFile(this.path, JSON.stringify(array));
         } else {
             newProduct = {
-                id: await this.generateId(),
-                title, 
-                description,
-                price,
-                thumbnail,
-                code,
-                stock,
-                category,
-                status
+                product: idProduct,
+                quantity: quantity
             }
 
             try {
-                const productsFile = await this.getProducts();
-                productsFile.push(newProduct);
-                await promises.writeFile(this.path, JSON.stringify(productsFile));
-                return true;
+                cartId.products.push(newProduct);
+                array[idCart - 1] = cartId;
+                await promises.writeFile(this.path, JSON.stringify(array));
             } catch (error) {
-                console.log("Error: No se pudo agregar producto");
+                console.log("Error: No se pudo agregar el producto al carrito");
             }
-        }        
+        }
     }
+
+    /* async addQuantity(idCart, productId) {
+        let array = await this.getCart();
+        let cartId = await this.getCartById(idCart);
+
+        cartId.products.
+
+        try {
+            await promises.writeFile(this.path, JSON.stringify(array));
+            return true;
+        } catch (error) {
+            console.log("Error: No se pudo aumentar cantidad de producto");
+        }   
+    } */
 }
+
+//Instancia
+const cart = new CartManager();
+
+//cart.createCart();
+//cart.getCartById(2);
+cart.addProductToCart(2, 3, 2);

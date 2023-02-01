@@ -1,14 +1,37 @@
 import { Router } from "express";
+import CartManager from "../cartManager.js"
 
 const router = Router();
 
-/* router.get();
+//Instancia
+const cart = new CartManager();
 
-router.post();
+//Consultar carrito por ID
+router.get("/:cid", async (req, res) => {
+    const { cid } = req.params;
 
-router.put();
+    const findCart = await cart.getCartById(parseInt(cid));
 
-router.delete(); */
+    if (findCart) {
+        res.json({message:"Carrito encontrado", cart:findCart});
+    } else {
+        res.json({message:"No se encontro el carrito"});
+    }
+});
+
+//Crear carrito
+router.post("/", async (req, res) => {
+    await cart.createCart();
+    res.json({message:"Carrito creado con éxito"});
+});
+
+router.post("/:cid/:product/:pid", async (req, res) => {
+    const {cid, product, pid} = req.params;
+
+    await cart.addProductToCart(cid, product, pid);
+
+    res.json({message:"Producto agregado con éxito"});
+})
 
 
 export default router;
