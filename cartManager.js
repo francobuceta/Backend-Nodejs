@@ -75,13 +75,14 @@ export default class CartManager {
         const array = await this.getCart();
         let arrayProducts = cartId.products.find(elem => elem.product === idProduct);
 
-        if (idProduct < 1 || idProduct > cartId.products.length) {
-            console.log("Error: Invalid quantity");
+        if (idCart < 1 || idCart > array.length) {
+            console.log("Error: Invalid data");
         } else if (arrayProducts) { 
             arrayProducts = {
                 product: idProduct,
                 quantity: arrayProducts.quantity + 1
             };
+            
             array[idCart - 1].products[idProduct - 1] = arrayProducts;
             await promises.writeFile(this.path, JSON.stringify(array));
         } else {
