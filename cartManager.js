@@ -70,20 +70,22 @@ export default class CartManager {
     }
 
     async addProductToCart(idCart, idProduct) {
+        let cartId = await this.getCartById(idCart);
+        let array = await this.getCart();
         let newProduct;
-        const cartId = await this.getCartById(idCart);
-        const array = await this.getCart();
         let arrayProducts = cartId.products.find(elem => elem.product === idProduct);
 
         if (idCart < 1 || idCart > array.length) {
             console.log("Error: Invalid data");
         } else if (arrayProducts) { 
+            const productIndex = cartId.products.findIndex(elem => elem.product === idProduct);
+            
             arrayProducts = {
                 product: idProduct,
                 quantity: arrayProducts.quantity + 1
             };
             
-            array[idCart - 1].products[idProduct - 1] = arrayProducts;
+            array[idCart - 1].products[productIndex] = arrayProducts;
             await promises.writeFile(this.path, JSON.stringify(array));
         } else {
             newProduct = {

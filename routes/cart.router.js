@@ -6,6 +6,7 @@ const router = Router();
 //Instancia
 const cart = new CartManager();
 
+//Rutas
 //Consultar carrito por ID
 router.get("/:cid", async (req, res) => {
     const { cid } = req.params;
