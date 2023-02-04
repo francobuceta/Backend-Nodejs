@@ -1,6 +1,7 @@
 import express from 'express';
 import ProductsRouter from "./routes/products.router.js";
 import CartRouter from "./routes/cart.router.js";
+import ViewsRouter from "./routes/views.router.js";
 import { __dirname } from "./src/dirname.js";
 import handlebars from "express-handlebars";
 
@@ -13,6 +14,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended:true }));
 
 //Redireccionamiento a los archivos
+app.use("/api", ViewsRouter);
 app.use("/api/products", ProductsRouter);
 app.use("/api/cart", CartRouter);
 
@@ -21,13 +23,10 @@ app.use(express.static(__dirname + "/public"));
 
 //Configurar Handlebars
 app.engine("handlebars", handlebars.engine());
-app.set("views", __dirname + "views");
+app.set("views", __dirname + "/views");
 app.set("view engine", "handlebars");
 
-//Rutas
-app.get("/api", (req, res) => {
-    res.send("Ruta raiz")
-});
+
 
 
 app.listen(8080, () => {

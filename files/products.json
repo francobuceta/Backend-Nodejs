@@ -1,7 +1,7 @@
 [
     {
         "id": 1,
-        "title": "producto prueba actualizado",
+        "title": "Celular",
         "description": "Este es un producto prueba",
         "price": 200,
         "thumbnail": [
@@ -15,7 +15,7 @@
     },
     {
         "id": 2,
-        "title": "producto prueba",
+        "title": "Computadora",
         "description": "Este es un producto prueba",
         "price": 200,
         "thumbnail": [
@@ -29,7 +29,7 @@
     },
     {
         "id": 3,
-        "title": "producto prueba",
+        "title": "Remera",
         "description": "Este es un producto prueba",
         "price": 200,
         "thumbnail": [
@@ -43,7 +43,7 @@
     },
     {
         "id": 4,
-        "title": "producto prueba",
+        "title": "Escritorio",
         "description": "Este es un producto prueba",
         "price": 200,
         "thumbnail": [
@@ -57,7 +57,7 @@
     },
     {
         "id": 5,
-        "title": "producto prueba",
+        "title": "Guitarra",
         "description": "Este es un producto prueba",
         "price": 200,
         "thumbnail": [
@@ -71,7 +71,7 @@
     },
     {
         "id": 6,
-        "title": "producto prueba",
+        "title": "Funda",
         "description": "Este es un producto prueba",
         "price": 200,
         "thumbnail": [
