@@ -71,14 +71,14 @@
     },
     {
         "id": 6,
-        "title": "Funda",
+        "title": "Funda actualizada",
         "description": "Este es un producto prueba",
         "price": 200,
         "thumbnail": [
             "ruta1",
             "ruta2"
         ],
-        "code": "abc128",
+        "code": "abc127",
         "stock": 25,
         "category": "categoria1",
         "status": true

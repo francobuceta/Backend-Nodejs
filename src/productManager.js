@@ -85,20 +85,27 @@ export default class ProductManager {
     async updateProduct(idProduct, field) {
         let array = await this.getProducts();
         let object = array.find(product => product.id === idProduct);
+        const { title, description, price, thumbnail, code, stock, category, status } = field;
         
-        object = {
-            id: idProduct,
-            ...field
+        if (!title || !description || !price || !thumbnail || !code || !stock || !category || status === "") {
+            console.log("Error: Missing field");
+        } else if (!object) {
+            console.log("Error: Wrong product");
+        } else {
+            object = {
+                id: idProduct,
+                ...field
+            }
+            
+            array[idProduct - 1] = object;
+        
+            try {
+                await promises.writeFile(this.path, JSON.stringify(array));
+                return true;
+            } catch (error) {
+                console.log("Error: No se pudo actualizar producto");
+            }   
         }
-        
-        array[idProduct - 1] = object;
-    
-        try {
-            await promises.writeFile(this.path, JSON.stringify(array));
-            return true;
-        } catch (error) {
-            console.log("Error: No se pudo actualizar producto");
-        }   
     }
 
     async deleteProduct(idProduct) {

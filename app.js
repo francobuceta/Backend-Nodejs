@@ -4,8 +4,8 @@ import CartRouter from "./routes/cart.router.js";
 import ViewsRouter from "./routes/views.router.js";
 import { __dirname } from "./src/dirname.js";
 import handlebars from "express-handlebars";
+import { Server } from 'socket.io';
 
-console.log(__dirname);
 //Servidor
 const app = express(); 
 
@@ -28,9 +28,15 @@ app.set("view engine", "handlebars");
 
 
 
-
-app.listen(8080, () => {
+//HTTP server
+const httpServer = app.listen(8080, () => {
     console.log("Escuchando puerto");
 });
 
+//Socket server
+const socketServer = new Server(httpServer);
+
+socketServer.on("connection", () => {
+    console.log("Cliente conectado");
+})
 
