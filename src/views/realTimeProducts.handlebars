@@ -4,6 +4,12 @@
     <input type="text" name="" id="">
 </form>
 
+{{#each products}}
+
+<span>ID: <b>{{id}}</b></span> <span>Producto: <b>{{title}}</b></span><br>
+
+{{/each}}
+
 
 <script src="/socket.io/socket.io.js"></script>
 <script src="/index.js"></script>
