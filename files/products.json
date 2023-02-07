@@ -1,1 +1,86 @@
-[{"id":1,"title":"Celular","description":"Este es un producto prueba","price":200,"thumbnail":["ruta1","ruta2"],"code":"abcactualizado","stock":25,"category":"categoria1","status":true},{"id":2,"title":"Computadora","description":"Este es un producto prueba","price":200,"thumbnail":["ruta1","ruta2"],"code":"abc124","stock":25,"category":"categoria1","status":true},{"id":3,"title":"Remera","description":"Este es un producto prueba","price":200,"thumbnail":["ruta1","ruta2"],"code":"abc125","stock":25,"category":"categoria1","status":true},{"id":4,"title":"Escritorio","description":"Este es un producto prueba","price":200,"thumbnail":["ruta1","ruta2"],"code":"abc126","stock":25,"category":"categoria1","status":true},{"id":5,"title":"Guitarra","description":"Este es un producto prueba","price":200,"thumbnail":["ruta1","ruta2"],"code":"abc127","stock":25,"category":"categoria1","status":true},{"id":6,"title":"Funda actualizada","description":"Este es un producto prueba","price":200,"thumbnail":["ruta1","ruta2"],"code":"abc127","stock":25,"category":"categoria1","status":true},{"id":7,"title":"Silla Gamer","description":"Este es un producto prueba","price":200,"thumbnail":["ruta1","ruta2"],"code":"abc165","stock":25,"category":"categoria1","status":true},{"id":8,"title":"Auriculares","description":"Este es un producto prueba","price":200,"thumbnail":["ruta1","ruta2"],"code":"abc167","stock":25,"category":"categoria1","status":true},{"id":9,"title":"Cámara Web","description":"Este es un producto prueba","price":200,"thumbnail":["ruta1","ruta2"],"code":"abc168","stock":25,"category":"categoria1","status":true},{"id":10,"title":"Modem","description":"Este es un producto prueba","price":200,"thumbnail":["ruta1","ruta2"],"code":"abc169","stock":25,"category":"categoria1","status":true},{"id":11,"title":"Impresora","description":"Este es un producto prueba","price":200,"thumbnail":["ruta1","ruta2"],"code":"abc170","stock":25,"category":"categoria1","status":true},{"id":12,"title":"Ventilador","description":"Este es un producto prueba","price":200,"thumbnail":["ruta1","ruta2"],"code":"abc171","stock":25,"category":"categoria1","status":true},{"id":13,"title":"Televisor","description":"Este es un producto prueba","price":200,"thumbnail":["ruta1","ruta2"],"code":"abc172","stock":25,"category":"categoria1","status":true},{"id":14,"title":"Microondas","description":"Este es un producto prueba","price":200,"thumbnail":["ruta1","ruta2"],"code":"abc173","stock":25,"category":"categoria1","status":true},{"id":15,"title":"Micros","description":"Este es un producto prueba","price":200,"thumbnail":["ruta1","ruta2"],"code":"abc174","stock":25,"category":"categoria1","status":true}]
+[
+    {
+        "id": 1,
+        "title": "Celular",
+        "description": "Este es un producto prueba",
+        "price": 200,
+        "thumbnail": [
+            "ruta1",
+            "ruta2"
+        ],
+        "code": "abcactualizado",
+        "stock": 25,
+        "category": "categoria1",
+        "status": true
+    },
+    {
+        "id": 2,
+        "title": "Computadora",
+        "description": "Este es un producto prueba",
+        "price": 200,
+        "thumbnail": [
+            "ruta1",
+            "ruta2"
+        ],
+        "code": "abc124",
+        "stock": 25,
+        "category": "categoria1",
+        "status": true
+    },
+    {
+        "id": 3,
+        "title": "Remera",
+        "description": "Este es un producto prueba",
+        "price": 200,
+        "thumbnail": [
+            "ruta1",
+            "ruta2"
+        ],
+        "code": "abc125",
+        "stock": 25,
+        "category": "categoria1",
+        "status": true
+    },
+    {
+        "id": 4,
+        "title": "Escritorio",
+        "description": "Este es un producto prueba",
+        "price": 200,
+        "thumbnail": [
+            "ruta1",
+            "ruta2"
+        ],
+        "code": "abc126",
+        "stock": 25,
+        "category": "categoria1",
+        "status": true
+    },
+    {
+        "id": 5,
+        "title": "Guitarra",
+        "description": "Este es un producto prueba",
+        "price": 200,
+        "thumbnail": [
+            "ruta1",
+            "ruta2"
+        ],
+        "code": "abc127",
+        "stock": 25,
+        "category": "categoria1",
+        "status": true
+    },
+    {
+        "id": 6,
+        "title": "Funda actualizada",
+        "description": "Este es un producto prueba",
+        "price": 200,
+        "thumbnail": [
+            "ruta1",
+            "ruta2"
+        ],
+        "code": "abc127",
+        "stock": 25,
+        "category": "categoria1",
+        "status": true
+    }
+]

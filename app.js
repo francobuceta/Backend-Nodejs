@@ -36,12 +36,3 @@ const httpServer = app.listen(8080, () => {
 //Socket server
 export const socketServer = new Server(httpServer);
 
-socketServer.on("connection", socket => {
-    console.log("Cliente conectado");
-
-    socket.on('products', (objeto) => {
-        console.log('Datos de productos actualizados: ', objeto);
-        socketServer.emit('products', objeto);
-    });
-});
-

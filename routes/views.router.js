@@ -30,6 +30,15 @@ router.get("/realtimeproducts", async (req, res) => {
         products = productsParse;
     }
 
+    socketServer.on("connection", socket => {
+        console.log("Usuario Conectado");
+
+        socket.on("nuevoProducto", producto => {
+            products.push(producto);
+            socketServer.emit("productos", products);
+        })
+    })
+
     res.render("realTimeProducts", {products});
 })
 

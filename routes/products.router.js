@@ -1,6 +1,5 @@
 import { Router } from "express";
 import ProductManager from '../src/productManager.js';
-import { socketServer } from "../app.js";
 
 const router = Router();
 
@@ -43,8 +42,6 @@ router.post("/", async (req, res) => {
     } else {
         res.json({message:"Producto no pudo ser agregado"});
     }
-
-    socketServer.emit('products', objeto);
 });
 
 //Actualizar un producto
