@@ -1,5 +1,6 @@
 import { Router } from "express";
-import CartManager from "../src/cartManager.js"
+/* import CartManager from "../src/dao/fileManagers/cartManager.js"; */
+import CartManager from "../src/dao/mongoManagers/cartManager.js";
 
 const router = Router();
 
@@ -11,7 +12,7 @@ const cart = new CartManager();
 router.get("/:cid", async (req, res) => {
     const { cid } = req.params;
 
-    const findCart = await cart.getCartById(parseInt(cid));
+    const findCart = await cart.getCartById(cid);
 
     if (findCart) {
         res.json({message:"Carrito encontrado", cart:findCart});
@@ -29,12 +30,11 @@ router.post("/", async (req, res) => {
 //Agregar producto a carrito
 router.post("/:cid/product/:pid", async (req, res) => {
     const {cid, pid} = req.params;
-    console.log(typeof cid);
 
-    await cart.addProductToCart(parseInt(cid), parseInt(pid));
+    await cart.addProductToCart(cid, pid);
 
     res.json({message:"Producto agregado con éxito"});
-})
+});
 
 
 export default router;

@@ -5,6 +5,7 @@ import ViewsRouter from "./routes/views.router.js";
 import { __dirname } from "./src/dirname.js";
 import handlebars from "express-handlebars";
 import { Server } from 'socket.io';
+import "./src/dao/dbConfig.js";
 
 //Servidor
 const app = express(); 

@@ -1,0 +1,21 @@
+<h2>Conectado con websocket Mongo</h2>
+<h3>Agregar producto</h3>
+
+<form id="formularioChat">
+    <input type="text" name="mensaje" id="inputChat">
+    <input type="text" name="mensaje" id="inputChat2">
+    <input type="submit" value="Enviar">
+</form>
+
+{{#each chat}}
+
+<div id="containerChat">
+    
+</div>
+
+{{/each}}
+
+
+
+<script src="/socket.io/socket.io.js"></script>
+<script src="/index.js"></script>
