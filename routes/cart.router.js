@@ -23,17 +23,17 @@ router.get("/:cid", async (req, res) => {
 
 //Crear carrito
 router.post("/", async (req, res) => {
-    await cart.createCart();
-    res.json({message:"Carrito creado con éxito"});
+    const createCart = await cart.createCart();
+    res.json({message:"Carrito creado con éxito", createCart});
 });
 
 //Agregar producto a carrito
 router.post("/:cid/product/:pid", async (req, res) => {
     const {cid, pid} = req.params;
 
-    await cart.addProductToCart(cid, pid);
+    const newCart = await cart.addProductToCart(cid, pid);
 
-    res.json({message:"Producto agregado con éxito"});
+    res.json({message:"Producto agregado con éxito", newCart});
 });
 
 

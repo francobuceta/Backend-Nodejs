@@ -3,7 +3,7 @@ import { cartModel } from "../models/cart.model.js";
 export default class CartManager {
     async getCartById(id) {
         try {
-            const cart = await cartModel.findById(id);
+            const cart = await cartModel.find({ _id:id });
             return cart;
         } catch (error) {
             console.log(error);
@@ -21,9 +21,10 @@ export default class CartManager {
 
     async addProductToCart(cid, pid) {
         try {
-            let object = {product: pid, quantity: 1}
-            const addProductToCart = await cartModel.findByIdAndUpdate(cid, { $push: { products: object } });
-            return addProductToCart;
+            const cart = await cartModel.findById(cid);
+            cart.products.push(pid);
+            cart.save();
+            return cart;
         } catch (error) {
             console.log(error);
         }

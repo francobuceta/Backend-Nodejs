@@ -9,7 +9,7 @@ const product = new ProductManager();
 
 //Rutas
 //Consultar todos los productos
-router.get("/", async (req, res) => {
+/* router.get("/", async (req, res) => {
     const { limit } = req.query;
     const getProducts = await product.getProducts();
 
@@ -19,6 +19,30 @@ router.get("/", async (req, res) => {
     } else {
         res.json({message:"Productos enviados", getProducts});
     }
+}); */
+
+//Consultar por paginacion
+router.get("/", async (req, res) => {
+    const {page = 1, limit = 10, category} = req.query;
+    const getProducts = await product.getPagination(category, page, limit);
+
+    const prevLink = getProducts.hasPrevPage 
+    ? `http://localhost:8080/api/products/pagination?page=${getProducts.prevPage}`
+    : null;
+
+    const nextLink = getProducts.hasNextPage 
+    ? `http://localhost:8080/api/products/pagination?page=${getProducts.nextPage}`
+    : null;
+
+    res.json({payload: getProducts.docs, info:{
+        totalPages: getProducts.totalPages, 
+        prevPage: getProducts.prevPage,
+        nextPage: getProducts.nextPage,
+        hasPrevPage: getProducts.hasPrevPage,
+        hasNextPage: getProducts.hasNextPage,
+        prevLink, 
+        nextLink,
+    }});
 });
 
 //Consultar producto por ID
