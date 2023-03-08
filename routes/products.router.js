@@ -7,20 +7,6 @@ const router = Router();
 //Instancia
 const product = new ProductManager();
 
-//Rutas
-//Consultar todos los productos
-/* router.get("/", async (req, res) => {
-    const { limit } = req.query;
-    const getProducts = await product.getProducts();
-
-    if (limit) {
-        const productsLimit = getProducts.slice(0, limit);
-        res.json({message:"Productos enviados", productsLimit});
-    } else {
-        res.json({message:"Productos enviados", getProducts});
-    }
-}); */
-
 //Consultar por paginacion
 router.get("/", async (req, res) => {
     const {page = 1, limit = 10, category} = req.query;
@@ -48,7 +34,7 @@ router.get("/", async (req, res) => {
 //Consultar producto por ID
 router.get("/:id", async (req, res) => {
     const {id} = req.params;
-    const productId = await product.getProductById(parseInt(id));
+    const productId = await product.getProductById(id);
 
     if (productId) {
         res.json({message:"Producto encontrado", productId});
@@ -74,10 +60,10 @@ router.put("/:id", async (req, res) => {
     const {id} = req.params;
     const campo = req.body;
 
-    const update = await product.updateProduct(parseInt(id), campo);
+    const update = await product.updateProduct(id, campo);
 
     if (update) {
-        res.json({message:"Producto actualizado con exito"});
+        res.json({message:"Producto actualizado con exito", update});
     } else {
         res.json({message:"Producto no pudo ser actualizado"});
     }
@@ -86,7 +72,7 @@ router.put("/:id", async (req, res) => {
 //Eliminar un producto
 router.delete("/:id", async (req, res) => {
     const {id} = req.params;
-    await product.deleteProduct(parseInt(id));
+    await product.deleteProduct(id);
 
     res.json({message:"Producto eliminado con exito"});
 }); 

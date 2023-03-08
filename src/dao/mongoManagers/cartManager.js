@@ -30,12 +30,35 @@ export default class CartManager {
         }
     }
 
-    async deleteProductById(id) {
+    async deleteProductInCart(cid, pid) {
         try {
-            const deletedCart = await cartModel.findByIdAndDelete(id);
-            return deletedCart;
+            const cart = await cartModel.findOne({ _id: cid });
+            if (!cart) return console.log('Carrito no encontrado');
+
+            let productIndex = cart.products.findIndex(elem => elem._id == pid);
+
+            const deleteProduct = cart.products.splice(productIndex, 1);
+
+            await cart.save();
+
+            return cart;
+
         } catch (error) {
             console.log(error);
+        }
+    }
+
+    async emptyCart(cid) {
+        try {
+            const cart = await cartModel.findOne({ _id: cid });
+            if (!cart) return console.log('Carrito no encontrado');
+
+            cart.products = [];
+            
+            await cart.save();
+
+        } catch (error) {
+            console.log(error)
         }
     }
 }

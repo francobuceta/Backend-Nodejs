@@ -1,5 +1,4 @@
 import { Router } from "express";
-/* import CartManager from "../src/dao/fileManagers/cartManager.js"; */
 import CartManager from "../src/dao/mongoManagers/cartManager.js";
 
 const router = Router();
@@ -35,6 +34,25 @@ router.post("/:cid/product/:pid", async (req, res) => {
 
     res.json({message:"Producto agregado con éxito", newCart});
 });
+
+//Eliminar producto del carrito
+router.delete("/:cid/product/:pid", async (req, res) => {
+    const {cid, pid} = req.params;
+
+    const deletedProduct = await cart.deleteProductInCart(cid, pid);
+
+    res.json({message:"Producto eliminado con éxito", deletedProduct});
+});
+
+//Eliminar todos los productos del carrito
+router.delete("/:cid", async (req, res) => {
+    const {cid} = req.params;
+
+    const deletedProducts = await cart.emptyCart(cid);
+
+    res.json({message:"Productos eliminados con éxito", deletedProducts});
+});
+
 
 
 export default router;

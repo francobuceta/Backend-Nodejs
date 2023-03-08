@@ -42,9 +42,9 @@ export default class ProductManager {
         }
     }
 
-    async updateProduct(obj) {
+    async updateProduct(id, obj) {
         try {
-            const updateProduct = await productsModel.findByIdAndUpdate(obj);
+            const updateProduct = await productsModel.findByIdAndUpdate(id, obj);
             return updateProduct;
         } catch (error) {
             console.log(error);
