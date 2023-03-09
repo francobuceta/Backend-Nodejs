@@ -3,7 +3,7 @@ import { cartModel } from "../models/cart.model.js";
 export default class CartManager {
     async getCartById(id) {
         try {
-            const cart = await cartModel.find({ _id:id });
+            const cart = await cartModel.find({ _id:id }).lean();
             return cart;
         } catch (error) {
             console.log(error);

@@ -3,7 +3,7 @@ import { productsModel } from "../models/products.model.js";
 export default class ProductManager {
     async getProducts() {
         try {
-            const products = await productsModel.find({});
+            const products = await productsModel.find({}).lean();
             return products;
         } catch (error) {
             console.log(error);
