@@ -2,9 +2,13 @@ import { Router } from "express";
 import fs from "fs";
 import { socketServer } from "../app.js";
 import { messagesModel } from "../src/dao/models/messages.model.js";
+import ProductManager from "../src/dao/mongoManagers/productManager.js";
+import CartManager from "../src/dao/mongoManagers/cartManager.js";
 
 const router = Router();
 const path = "./files/products.json";
+const product = new ProductManager();
+const cart = new CartManager();
 
 //Rutas
 
@@ -67,5 +71,34 @@ router.get("/chatMongo", async (req, res) => {
     console.log(chat);
     res.render("chat", { chat });
 });
+
+
+
+//Ruta products hdb
+
+router.get("/products", async (req, res) => {
+    try {
+        const products = await product.getProducts();
+        res.render("products", { products });
+    } catch (error) {
+        console.log(error);
+    }
+});
+
+//Carrito
+router.get("/carts/:cid", async (req, res) => {
+    const {cid} = req.params;
+
+    try {
+        const getCart = await cart.getCartById(cid);
+        
+        let arrayProducts = getCart[0].products;
+
+        res.render("cart", { arrayProducts });
+    } catch (error) {
+        console.log(error);
+    }
+});
+
 
 export default router;
