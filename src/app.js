@@ -2,10 +2,12 @@ import express from 'express';
 import ProductsRouter from "./routes/products.router.js";
 import CartRouter from "./routes/cart.router.js";
 import ViewsRouter from "./routes/views.router.js";
-import { __dirname } from "./src/dirname.js";
+import UserRouter from "./routes/user.router.js";
+import { __dirname } from "./utils.js"
 import handlebars from "express-handlebars";
 import { Server } from 'socket.io';
-import "./src/dao/dbConfig.js";
+import cookieParser from 'cookie-parser';
+import "./dao/dbConfig.js";
 
 //Servidor
 const app = express(); 
@@ -15,9 +17,10 @@ app.use(express.json());
 app.use(express.urlencoded({ extended:true }));
 
 //Redireccionamiento a los archivos
-app.use("/api", ViewsRouter);
 app.use("/api/products", ProductsRouter);
 app.use("/api/cart", CartRouter);
+app.use("/views", ViewsRouter);
+app.use("/user", UserRouter);
 
 //Ruta absoluta
 app.use(express.static(__dirname + "/public"));
@@ -26,6 +29,9 @@ app.use(express.static(__dirname + "/public"));
 app.engine("handlebars", handlebars.engine());
 app.set("views", __dirname + "/views");
 app.set("view engine", "handlebars");
+
+//Cookies
+app.use(cookieParser());
 
 
 

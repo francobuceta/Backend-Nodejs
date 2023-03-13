@@ -1,8 +1,8 @@
 import mongoose from "mongoose";
 
-const URI = "mongodb+srv://francobuceta95:homero@cluster0.otuuqv4.mongodb.net/ecommerce?retryWrites=true&w=majority";
+export const URL = "mongodb+srv://francobuceta95:homero@cluster0.otuuqv4.mongodb.net/ecommerce?retryWrites=true&w=majority";
 
-mongoose.connect(URI, (error) => {
+mongoose.connect(URL, (error) => {
     if (error) {
         console.log("Hubo un error al conectar con base de datos");
     } else {
