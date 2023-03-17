@@ -7,7 +7,9 @@ import { __dirname } from "./utils.js"
 import handlebars from "express-handlebars";
 import { Server } from 'socket.io';
 import cookieParser from 'cookie-parser';
+import passport from "passport";
 import "./dao/dbConfig.js";
+import "./passport/passportStrategies.js";
 
 //Servidor
 const app = express(); 
@@ -32,6 +34,11 @@ app.set("view engine", "handlebars");
 
 //Cookies
 app.use(cookieParser());
+
+//Inicializar passport
+app.use(passport.initialize());
+//Pasport guarda la información de session
+app.use(passport.session());
 
 
 

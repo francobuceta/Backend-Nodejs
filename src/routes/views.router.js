@@ -17,6 +17,7 @@ router.use(cookieParser(cookieKey));
 
 router.get("/products", async (req, res) => {
     const { userName } = req.signedCookies
+    
     try {
         const products = await product.getProducts();
         res.render("products", { products, userName });
