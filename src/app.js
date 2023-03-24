@@ -10,6 +10,9 @@ import cookieParser from 'cookie-parser';
 import passport from "passport";
 import "./dao/dbConfig.js";
 import "./passport/passportStrategies.js";
+import MongoStore from "connect-mongo";
+import { URL } from "../src/dao/dbConfig.js";
+import session from "express-session";
 
 //Servidor
 const app = express(); 
@@ -35,11 +38,22 @@ app.set("view engine", "handlebars");
 //Cookies
 app.use(cookieParser());
 
+//Session
+app.use(session(
+    {
+        secret: 'secret key',
+        resave: false,
+        saveUninitialized: true,
+        store: new MongoStore ({
+            mongoUrl: URL
+        })
+    }
+));
+
 //Inicializar passport
 app.use(passport.initialize());
 //Pasport guarda la información de session
 app.use(passport.session());
-
 
 
 //HTTP server

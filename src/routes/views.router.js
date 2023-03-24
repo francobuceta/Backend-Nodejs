@@ -12,7 +12,6 @@ const cookieKey = "Signed-Cookie";
 router.use(cookieParser(cookieKey));
 
 //Rutas
-
 //Ruta products hdb
 
 router.get("/products", async (req, res) => {

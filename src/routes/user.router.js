@@ -9,10 +9,6 @@ import passport from "passport";
 const router = Router();
 const user = new UserManager();
 
-//Cookie
-const cookieKey = "Signed-Cookie";
-router.use(cookieParser(cookieKey));
-
 //Session
 router.use(session(
     {
@@ -23,7 +19,11 @@ router.use(session(
             mongoUrl: URL
         })
     }
-))
+));
+
+//Cookie
+const cookieKey = "Signed-Cookie";
+router.use(cookieParser(cookieKey));
 
 router.post("/register", async (req, res) => {
     const newUser = await user.createUser(req.body);
@@ -37,7 +37,7 @@ router.post("/register", async (req, res) => {
 
 router.post("/login", async (req, res) => {
     const newUser = await user.loginUser(req.body);
-    const name = newUser.firstName;
+    const name = newUser?.firstName;
 
     if (newUser) {
         req.session.email = name;
