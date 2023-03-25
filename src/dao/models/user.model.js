@@ -22,7 +22,22 @@ const userSchema = new mongoose.Schema({
     password: {
         type: String,
         required: true
+    },
+    cart: {
+        cartId: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "Carts"
+        }
+    },
+    role: {
+        type: String,
+        default: "user"
     }
 });
+
+userSchema.pre("find", function (next) {
+    this.populate("cart.cartId");
+    next();
+})
 
 export const userModel = mongoose.model("users", userSchema);

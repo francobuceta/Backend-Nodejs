@@ -2,6 +2,7 @@ import { Router } from "express";
 import ProductManager from "../dao/mongoManagers/productManager.js";
 import CartManager from "../dao/mongoManagers/cartManager.js";
 import cookieParser from 'cookie-parser';
+import passport from "passport";
 
 const router = Router();
 const product = new ProductManager();
@@ -14,8 +15,9 @@ router.use(cookieParser(cookieKey));
 //Rutas
 //Ruta products hdb
 
-router.get("/products", async (req, res) => {
-    const { userName } = req.signedCookies
+router.get("/products", passport.authenticate("jwt", {session: false}), async (req, res) => {
+    const userName = req.user.firstName;
+    console.log(userName);
     
     try {
         const products = await product.getProducts();
@@ -41,29 +43,33 @@ router.get("/carts/:cid", async (req, res) => {
 });
 
 //Login
-router.get("/login", async (req, res) => {
+router.get("/login", (req, res) => {
     res.render("login");
 });
 
 //Register
-router.get("/register", async (req, res) => {
+router.get("/register", (req, res) => {
     res.render("register");
 });
 
 //Error en registro
-router.get("/errorRegister", async (req, res) => {
+router.get("/errorRegister", (req, res) => {
     res.render("errorRegister");
 });
 
 //Error en login
-router.get("/errorLogin", async (req, res) => {
+router.get("/errorLogin", (req, res) => {
     res.render("errorLogin");
 });
 
 //Perfil
-router.get("/profile", async (req, res) => {
+router.get("/profile", (req, res) => {
     res.render("profile");
 });
 
+//JWT
+router.get("/jwtFront", (req, res) => {
+    res.render("jwt");
+});
 
 export default router;

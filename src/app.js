@@ -13,6 +13,7 @@ import "./passport/passportStrategies.js";
 import MongoStore from "connect-mongo";
 import { URL } from "../src/dao/dbConfig.js";
 import session from "express-session";
+import jwtRouter from "./routes/jwt.router.js"
 
 //Servidor
 const app = express(); 
@@ -26,6 +27,7 @@ app.use("/api/products", ProductsRouter);
 app.use("/api/cart", CartRouter);
 app.use("/views", ViewsRouter);
 app.use("/user", UserRouter);
+app.use("/jwt", jwtRouter);
 
 //Ruta absoluta
 app.use(express.static(__dirname + "/public"));

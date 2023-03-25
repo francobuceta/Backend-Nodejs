@@ -3,6 +3,17 @@
     justify-content: space-around;
 }
 
+.products_nameCont {
+    display: flex;
+    justify-content: space-around;
+}
+
+.products_button {
+    width: 100px;
+    height: 60px;
+    cursor: pointer;
+}
+
 .footer {
     margin-top: 30px;
 }
