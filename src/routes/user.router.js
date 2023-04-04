@@ -1,11 +1,11 @@
 import { Router } from "express";
 import session from "express-session";
 import MongoStore from "connect-mongo";
-import { URL } from "../dao/dbConfig.js";
 import UserManager from "../dao/mongoManagers/userManager.js";
 import cookieParser from 'cookie-parser';
 import passport from "passport";
 import { generateToken } from "../utils.js";
+import config from "../config/config.js";
 
 const router = Router();
 const user = new UserManager();
@@ -17,7 +17,7 @@ router.use(session(
         resave: false,
         saveUninitialized: true,
         store: new MongoStore({
-            mongoUrl: URL
+            mongoUrl: config.MONGO_URL
         })
     }
 ));

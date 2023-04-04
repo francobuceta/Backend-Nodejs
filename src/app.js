@@ -11,9 +11,9 @@ import passport from "passport";
 import "./dao/dbConfig.js";
 import "./passport/passportStrategies.js";
 import MongoStore from "connect-mongo";
-import { URL } from "../src/dao/dbConfig.js";
 import session from "express-session";
-import jwtRouter from "./routes/jwt.router.js"
+import jwtRouter from "./routes/jwt.router.js";
+import config from "./config/config.js"
 
 //Servidor
 const app = express(); 
@@ -47,7 +47,7 @@ app.use(session(
         resave: false,
         saveUninitialized: true,
         store: new MongoStore ({
-            mongoUrl: URL
+            mongoUrl: config.MONGO_URL
         })
     }
 ));
@@ -59,8 +59,11 @@ app.use(passport.session());
 
 
 //HTTP server
-const httpServer = app.listen(8080, () => {
-    console.log("Escuchando puerto");
+
+const PORT = config.PORT;
+
+const httpServer = app.listen(PORT, () => {
+    console.log(`Escuchando puerto ${PORT}`);
 });
 
 //Socket server

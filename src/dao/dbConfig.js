@@ -1,9 +1,8 @@
 import mongoose from "mongoose";
-
-export const URL = "mongodb+srv://francobuceta95:homero@cluster0.otuuqv4.mongodb.net/ecommerce?retryWrites=true&w=majority";
+import config from "../config/config.js"
 
 try {
-    await mongoose.connect(URL);
+    await mongoose.connect(config.MONGO_URL);
     console.log("Conectado a la base de datos con éxito");
 } catch (error) {
     console.log(error);
