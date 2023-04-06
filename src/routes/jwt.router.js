@@ -3,12 +3,13 @@ import { generateToken } from "../utils.js";
 import userManager from "../dao/mongoManagers/userManager.js";
 import cookieParser from 'cookie-parser';
 import passport from "passport";
+import config from "../config/config.js"
 
 const router = Router();
 const userMan = new userManager();
 
 //Cookie
-const cookieKey = "Signed-Cookie";
+const cookieKey = config.COOKIE_KEY;
 router.use(cookieParser(cookieKey));
 
 router.post("/login", async(req, res) => {

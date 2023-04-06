@@ -37,7 +37,7 @@ export default class UserManager {
             } 
             return null;
         } catch (error) {
-            
+            console.log(error);
         }
     }
 }

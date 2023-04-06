@@ -3,13 +3,14 @@ import ProductManager from "../dao/mongoManagers/productManager.js";
 import CartManager from "../dao/mongoManagers/cartManager.js";
 import cookieParser from 'cookie-parser';
 import passport from "passport";
+import config from "../config/config.js";
 
 const router = Router();
 const product = new ProductManager();
 const cart = new CartManager();
 
 //Cookie
-const cookieKey = "Signed-Cookie";
+const cookieKey = config.COOKIE_KEY;
 router.use(cookieParser(cookieKey));
 
 //Rutas
@@ -17,7 +18,6 @@ router.use(cookieParser(cookieKey));
 
 router.get("/products", passport.authenticate("jwt", {session: false}), async (req, res) => {
     const userName = req.user.firstName;
-    console.log(userName);
     
     try {
         const products = await product.getProducts();

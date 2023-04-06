@@ -1,14 +1,12 @@
 import { Router } from "express";
+import { createUserController, loginUserController } from "../controllers/user.controllers.js";
 import session from "express-session";
 import MongoStore from "connect-mongo";
-import UserManager from "../dao/mongoManagers/userManager.js";
 import cookieParser from 'cookie-parser';
 import passport from "passport";
-import { generateToken } from "../utils.js";
 import config from "../config/config.js";
 
 const router = Router();
-const user = new UserManager();
 
 //Session
 router.use(session(
@@ -23,43 +21,19 @@ router.use(session(
 ));
 
 //Cookie
-const cookieKey = "Signed-Cookie";
+const cookieKey = config.COOKIE_KEY;
 router.use(cookieParser(cookieKey));
 
-router.post("/register", async (req, res) => {
-    const newUser = await user.createUser(req.body);
+router.post("/register", createUserController);
 
-    if (newUser) {
-        res.redirect("/views/login");
-    } else {
-        res.redirect("/views/errorRegister");
-    }
-});
-
-router.post("/login", async (req, res) => {
-    const newUser = await user.loginUser(req.body);
-
-    if (newUser) {
-        const token = generateToken(newUser);
-        return res.cookie("token", token, { httpOnly: true }).redirect("/views/products");
-    } else {
-        res.redirect("/views/errorLogin");
-    }
-});
+router.post("/login", loginUserController);
 
 router.get("/login/current", passport.authenticate("jwt", {session: false}), (req, res) => {
     res.json(req.user); 
 });
 
-router.get("/logout", (req, res) => {
-    req.session.destroy(error => {
-        if (error) {
-            console.log(error);
-            res.json(error);
-        } else {
-            res.redirect("/views/login");
-        }
-    });
+router.get("/logout", (req, res) => { 
+    res.clearCookie("token").redirect("/views/login");
 });
 
 router.get("/registroGithub", passport.authenticate("github", { scope: ['user:email'] }));

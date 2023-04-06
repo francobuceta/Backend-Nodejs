@@ -2,13 +2,13 @@ import { userModel } from "../dao/models/user.model.js";
 import passport from "passport";
 import { Strategy as GitHubStrategy } from "passport-github2";
 import { ExtractJwt, Strategy as JwtStrategy } from "passport-jwt";
-
+import config from "../config/config.js";
 
 //Github Strategy
 passport.use("github", new GitHubStrategy({
-    clientID: "Iv1.6ea8ece480d47686",
-    clientSecret: "82cc9b6eec285393f1dfb15053b858fd96238b67",
-    callbackURL: "http://localhost:8080/user/github"
+    clientID: config.CLIENT_ID,
+    clientSecret: config.CLIENT_SECRET,
+    callbackURL: config.CALLBACK_URL
 },
     async (accessToken, refreshToken, profile, done) => {
         const user = await userModel.findOne({ email: profile._json.email });
@@ -53,8 +53,3 @@ passport.deserializeUser(async (id, done) => {
     const user = await userModel.findById(id);
     done(err, user);
 });
-
-
-//App ID: 306482
-//Client ID: Iv1.6ea8ece480d47686
-//Client Secret: 82cc9b6eec285393f1dfb15053b858fd96238b67
