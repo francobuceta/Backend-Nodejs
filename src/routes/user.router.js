@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { createUserController, loginUserController } from "../controllers/user.controllers.js";
+import { createUserController, loginUserController, loginGithubController } from "../controllers/user.controllers.js";
 import session from "express-session";
 import MongoStore from "connect-mongo";
 import cookieParser from 'cookie-parser';
@@ -37,16 +37,7 @@ router.get("/logout", (req, res) => {
 });
 
 router.get("/registroGithub", passport.authenticate("github", { scope: ['user:email'] }));
-router.get("/github", passport.authenticate("github"), (req, res) => {
-    const { firstName } = req.user;
 
-    req.session.firstName = firstName;
-
-    res.cookie("userName", firstName, {
-        signed: true
-    });
-
-    res.redirect("/views/products");
-});
+router.get("/github", passport.authenticate("github"), loginGithubController);
 
 export default router;
