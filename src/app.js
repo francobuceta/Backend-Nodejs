@@ -13,7 +13,8 @@ import "./passport/passportStrategies.js";
 import MongoStore from "connect-mongo";
 import session from "express-session";
 import jwtRouter from "./routes/jwt.router.js";
-import config from "./config/config.js"
+import config from "./config/config.js";
+import cors from "cors";
 
 //Servidor
 const app = express(); 
@@ -21,6 +22,7 @@ const app = express();
 //Configuracion inicial express
 app.use(express.json());
 app.use(express.urlencoded({ extended:true }));
+app.use(cors());
 
 //Redireccionamiento a los archivos
 app.use("/api/products", ProductsRouter);
@@ -41,7 +43,7 @@ app.set("view engine", "handlebars");
 app.use(cookieParser());
 
 //Session
-app.use(session(
+/* app.use(session(
     {
         secret: 'secret key',
         resave: false,
@@ -50,7 +52,7 @@ app.use(session(
             mongoUrl: config.MONGO_URL
         })
     }
-));
+)); */
 
 //Inicializar passport
 app.use(passport.initialize());

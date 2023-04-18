@@ -9,7 +9,7 @@ import config from "../config/config.js";
 const router = Router();
 
 //Session
-router.use(session(
+/* router.use(session(
     {
         secret: 'secret key',
         resave: false,
@@ -18,7 +18,7 @@ router.use(session(
             mongoUrl: config.MONGO_URL
         })
     }
-));
+)); */
 
 //Cookie
 const cookieKey = config.COOKIE_KEY;
@@ -38,6 +38,6 @@ router.get("/logout", (req, res) => {
 
 router.get("/registroGithub", passport.authenticate("github", { scope: ['user:email'] }));
 
-router.get("/github", passport.authenticate("github"), loginGithubController);
+router.get("/github", passport.authenticate("github", {session: false}), loginGithubController);
 
 export default router;
