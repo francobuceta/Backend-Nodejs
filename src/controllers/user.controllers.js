@@ -31,9 +31,14 @@ export const loginUserController = async (req, res) => {
     }
 }
 
+export const logoutUserController = async (req, res) => {
+    res.clearCookie("token").redirect("/views/login");
+}
+
 export const loginGithubController = async (req, res) => {
     const user = req.user;
 
     const token = generateToken(user);
     return res.cookie("token", token, { httpOnly: true }).redirect("/views/products");
 }
+

@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { createUserController, loginUserController, loginGithubController } from "../controllers/user.controllers.js";
+import { createUserController, loginUserController, logoutUserController,loginGithubController } from "../controllers/user.controllers.js";
 import session from "express-session";
 import MongoStore from "connect-mongo";
 import cookieParser from 'cookie-parser';
@@ -20,9 +20,9 @@ const router = Router();
     }
 )); */
 
-//Cookie
+/* //Cookie
 const cookieKey = config.COOKIE_KEY;
-router.use(cookieParser(cookieKey));
+router.use(cookieParser(cookieKey)); */
 
 router.post("/register", createUserController);
 
@@ -32,9 +32,7 @@ router.get("/login/current", passport.authenticate("jwt", {session: false}), (re
     res.json(req.user); 
 });
 
-router.get("/logout", (req, res) => { 
-    res.clearCookie("token").redirect("/views/login");
-});
+router.get("/logout", logoutUserController);
 
 router.get("/registroGithub", passport.authenticate("github", { scope: ['user:email'] }));
 
