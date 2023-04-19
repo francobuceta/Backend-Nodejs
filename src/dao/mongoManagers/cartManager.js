@@ -24,7 +24,7 @@ export default class CartManager {
             const cart = await cartModel.findById(cid);
             
             if (!cart) {
-                return cart;
+                return null;
             }
             else{
                 if (cart.products.length !== 0) {
@@ -125,5 +125,10 @@ export default class CartManager {
         } catch (error) {
             console.log(error)
         }
+    }
+
+    async updateCart(cid, product) {
+        const update = await cartModel.findOne(cid, product);
+        return update;
     }
 }

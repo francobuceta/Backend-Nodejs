@@ -30,7 +30,11 @@ export const addProductToCartController = async (req, res) => {
 
     const newCart = await addProductToCartService(cid, pid);
 
-    res.json({ message: "Producto agregado con éxito", newCart });
+    if (newCart) {
+        res.json({ message: "Producto agregado con éxito", newCart });
+    } else {
+        res.json({ message: "Error al agregar producto al carrito"});
+    }
 }
 
 export const updateCartProductsByArrayController = async (req, res) => {
@@ -38,8 +42,8 @@ export const updateCartProductsByArrayController = async (req, res) => {
     const { products } = req.body;
     const productsUpdated = await updateCartProductsByArrayService(cid, products);
     
-    if (updateCartProductsByArray) {
-        res.json(productsUpdated)
+    if (productsUpdated) {
+        res.json({mensaje: "Carrito actualizado con éxito", productsUpdated});
     }
     else {
         res.json({ mensaje: "Carrito no encontrado para actualizar" })
