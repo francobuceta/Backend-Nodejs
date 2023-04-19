@@ -12,13 +12,9 @@ export default class ProductManager {
 
     async getPagination(category, page, limit) {
         try {
-            if (category) {
-                const products = await productsModel.paginate({ category }, { page, limit });
-                return products;
-            } else {
-                const products = await productsModel.paginate({}, { page, limit });
-                return products;
-            }
+            const products = await productsModel.paginate( category , page, limit );
+            console.log(products);
+            return products;
         } catch (error) {
             console.log(error);
         }

@@ -1,10 +1,20 @@
 import ProductManager from "../dao/mongoManagers/productManager.js";
 
-const productManager = new ProductManager(); 
+const productManager = new ProductManager();
 
 export const getPaginationService = async (category, page, limit) => {
-    const products = await productManager.getPagination(category, page, limit);
-    return products;
+    const options = {}
+    
+    if (category) {
+        options.category = category
+    }
+
+    try {
+        const products = await productManager.getPagination(options, { page, limit });
+        return products;
+    } catch (error) {
+        console.log(error);
+    }
 }
 
 export const getProductByIdService = async (id) => {
