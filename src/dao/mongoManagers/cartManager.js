@@ -116,7 +116,7 @@ export default class CartManager {
     async emptyCart(cid) {
         try {
             const cart = await cartModel.findOne({ _id: cid });
-            if (!cart) return console.log('Carrito no encontrado');
+            if (!cart) return null;
 
             cart.products = [];
             

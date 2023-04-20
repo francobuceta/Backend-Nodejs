@@ -66,7 +66,10 @@ export const deleteProductInCartController = async (req, res) => {
     res.json({ message: "Producto eliminado con éxito", deletedProduct });
 }
 
-export const emptyCartController = async (cid) => {
+export const emptyCartController = async (req, res) => {
+    const { cid } = req.params;
     const cart = await emptyCartService(cid);
-    return cart;
+
+    cart ? res.json({ message: "Carrito vaciado con éxito", cart })
+    : res.json({ message: "Error al vaciar el carrito", cart })
 }
