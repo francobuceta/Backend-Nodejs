@@ -1,5 +1,6 @@
 import UserManager from "../dao/mongoManagers/userManager.js";
 import { hashPassword, comparePassword } from "../utils.js";
+import UserRespDto from "../dao/dto/user.dto.js";
 
 const userManager = new UserManager();
 
@@ -33,7 +34,8 @@ export const loginUserService = async (user) => {
                 const isPassword = await comparePassword(password, findUser.password);
         
                 if (isPassword) {
-                    return findUser;
+                    const userRespDto = new UserRespDto(findUser);
+                    return userRespDto;
                 }
             } 
             return null;
