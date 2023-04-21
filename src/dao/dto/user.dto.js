@@ -5,5 +5,6 @@ export default class UserRespDto {
         this.lastName = user.lastName;
         this.email = user.email;
         this.age = user.age;
+        this.cart = user.cart;
     }
 }

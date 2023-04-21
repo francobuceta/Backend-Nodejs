@@ -28,16 +28,13 @@ router.get("/products", passport.authenticate("jwt", {session: false}), async (r
 });
 
 //Carrito
-router.get("/cart", passport.authenticate("jwt", {session: false}), async (req, res) => {
-    const {cid} = req.user.cart.cartId;
-    console.log(cid);
+router.get("/cartUser", passport.authenticate("jwt", {session: false}), async (req, res) => {
+    const { cartId } = req.user.cart;
 
     try {
-        const getCart = await cart.getCartById(cid);
+        const userCart = await cart.getCartById(cartId);
         
-        let arrayProducts = getCart[0].products;
-        console.log(arrayProducts);
-
+        const arrayProducts = userCart[0].products;
         res.render("cart", { arrayProducts });
     } catch (error) {
         console.log(error);

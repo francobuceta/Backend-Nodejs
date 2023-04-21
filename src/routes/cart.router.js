@@ -1,5 +1,7 @@
 import { Router } from "express";
 import passport from "passport";
+import cookieParser from 'cookie-parser';
+import config from "../config/config.js";
 import {
     getCartByIdController,
     createCartController,
@@ -12,13 +14,17 @@ import {
 
 const router = Router();
 
+//Cookie
+const cookieKey = config.COOKIE_KEY;
+router.use(cookieParser(cookieKey));
 
 //Rutas
 //Consultar carrito por ID
-router.get("/:cid", getCartByIdController);
+
+/* router.get("/:cid", getCartByIdController); */
 
 router.get("/userCart", passport.authenticate("jwt", {session: false}), async (req, res) => {
-    res.redirect("/views/cart");
+    res.redirect("/views/cartUser");
 })
 
 //Crear carrito
