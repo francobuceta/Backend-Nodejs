@@ -43,7 +43,7 @@ app.set("view engine", "handlebars");
 app.use(cookieParser());
 
 //Session
-/* app.use(session(
+app.use(session(
     {
         secret: 'secret key',
         resave: false,
@@ -52,7 +52,7 @@ app.use(cookieParser());
             mongoUrl: config.MONGO_URL
         })
     }
-)); */
+));
 
 //Inicializar passport
 app.use(passport.initialize());

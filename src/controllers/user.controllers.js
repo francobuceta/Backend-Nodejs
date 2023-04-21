@@ -17,8 +17,8 @@ export const createUserController = async (req, res) => {
         res.redirect("/views/login");
     } else {
         res.redirect("/views/errorRegister");
-    }
-}
+    } 
+} 
 
 export const loginUserController = async (req, res) => {
     const newUser = await loginUserService(req.body);

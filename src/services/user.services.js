@@ -5,6 +5,7 @@ const userManager = new UserManager();
 
 export const createUserService = async (user) => {
     const { email, password } = user;
+
     try {
         const findUser = await userManager.findUser({ email });
 

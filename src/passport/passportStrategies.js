@@ -44,7 +44,7 @@ passport.use("jwt", new JwtStrategy({
 ));
 
 
-
+//Configuracion Passport
 passport.serializeUser((user, done) => {
     done(null, user._id);
 });

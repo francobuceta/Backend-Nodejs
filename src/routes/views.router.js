@@ -63,8 +63,15 @@ router.get("/errorLogin", (req, res) => {
 });
 
 //Perfil
-router.get("/profile", (req, res) => {
-    res.render("profile");
+router.get("/profile", passport.authenticate("jwt", {session: false}), (req, res) => {
+    const userData = req.user;
+    console.log(userData);
+
+    try {
+        res.render("profile", {userData});
+    } catch (error) {
+        console.log("Error al renderizar el perfil");
+    }
 });
 
 //JWT

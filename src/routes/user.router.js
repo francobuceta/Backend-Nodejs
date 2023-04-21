@@ -20,16 +20,16 @@ const router = Router();
     }
 )); */
 
-/* //Cookie
-const cookieKey = config.COOKIE_KEY;
+//Cookie
+/* const cookieKey = config.COOKIE_KEY;
 router.use(cookieParser(cookieKey)); */
 
 router.post("/register", createUserController);
 
 router.post("/login", loginUserController);
 
-router.get("/login/current", passport.authenticate("jwt", {session: false}), (req, res) => {
-    res.json(req.user); 
+router.get("/login/current", (req, res) => {
+    res.redirect("/views/profile"); 
 });
 
 router.get("/logout", logoutUserController);
