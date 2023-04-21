@@ -42,3 +42,7 @@ export const loginGithubController = async (req, res) => {
     return res.cookie("token", token, { httpOnly: true }).redirect("/views/products");
 }
 
+export const loginCurrent = async (req, res) => {
+    res.redirect("/views/profile"); 
+}
+

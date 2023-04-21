@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { createUserController, loginUserController, logoutUserController,loginGithubController } from "../controllers/user.controllers.js";
+import { createUserController, loginUserController, logoutUserController,loginGithubController, loginCurrent } from "../controllers/user.controllers.js";
 import session from "express-session";
 import MongoStore from "connect-mongo";
 import cookieParser from 'cookie-parser';
@@ -28,9 +28,7 @@ router.post("/register", createUserController);
 
 router.post("/login", loginUserController);
 
-router.get("/login/current", (req, res) => {
-    res.redirect("/views/profile"); 
-});
+router.get("/login/current", loginCurrent);
 
 router.get("/logout", logoutUserController);
 

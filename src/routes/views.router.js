@@ -65,7 +65,6 @@ router.get("/errorLogin", (req, res) => {
 //Perfil
 router.get("/profile", passport.authenticate("jwt", {session: false}), (req, res) => {
     const userData = req.user;
-    console.log(userData);
 
     try {
         res.render("profile", {userData});
