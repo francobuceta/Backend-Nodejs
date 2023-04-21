@@ -1,4 +1,5 @@
 import { Router } from "express";
+import passport from "passport";
 import {
     getCartByIdController,
     createCartController,
@@ -15,6 +16,10 @@ const router = Router();
 //Rutas
 //Consultar carrito por ID
 router.get("/:cid", getCartByIdController);
+
+router.get("/userCart", passport.authenticate("jwt", {session: false}), async (req, res) => {
+    res.redirect("/views/cart");
+})
 
 //Crear carrito
 router.post("/", createCartController);
