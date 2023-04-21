@@ -5,6 +5,7 @@ import UserRespDto from "../dao/dto/user.dto.js";
 
 const userManager = new UserManager();
 
+//Se crea el usuario si no existe y se le asigna la contraseña hasheada y un carrito
 export const createUserService = async (user) => {
     const { email, password } = user;
 
