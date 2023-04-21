@@ -17,11 +17,13 @@ router.use(cookieParser(cookieKey));
 //Ruta products hdb
 
 router.get("/products", passport.authenticate("jwt", {session: false}), async (req, res) => {
-    const userName = req.user.firstName;
+    const userData = req.user;
+    const cartId = userData.cart.cartId;
+    console.log(cartId);
     
     try {
         const products = await product.getProducts();
-        res.render("products", { products, userName });
+        res.render("products", { products, userData, cartId });
     } catch (error) {
         console.log(error);
     }
@@ -33,8 +35,8 @@ router.get("/cartUser", passport.authenticate("jwt", {session: false}), async (r
 
     try {
         const userCart = await cart.getCartById(cartId);
-        
         const arrayProducts = userCart[0].products;
+        
         res.render("cart", { arrayProducts });
     } catch (error) {
         console.log(error);

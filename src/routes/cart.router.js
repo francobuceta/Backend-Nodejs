@@ -23,7 +23,7 @@ router.use(cookieParser(cookieKey));
 
 /* router.get("/:cid", getCartByIdController); */
 
-router.get("/userCart", passport.authenticate("jwt", {session: false}), async (req, res) => {
+router.get("/userCart", async (req, res) => {
     res.redirect("/views/cartUser");
 })
 

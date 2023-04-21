@@ -1,5 +1,5 @@
 <div class="products_nameCont">
-    <h2>Hola {{userName}}!</h2>
+    <h2>Hola {{userData.firstName}}!</h2>
     <button class="products_button" onclick="location.href='/api/cart/userCart'">Carrito</button>
     <button class="products_button" onclick="location.href='/user/login/current'">Perfil</button>
     <button class="products_button" onclick="location.href='/user/logout'">Cerrar Sesión</button>
@@ -8,8 +8,7 @@
 
 <div class="products_container">
 
-
-{{#each products}}
+    {{#each products}}
 
     <div>
         <h3>{{title}}</h3>
@@ -17,9 +16,29 @@
         <h4>Categoría: {{category}}</h4>
         <h4>$ {{price}}</h4>
         <h5>Cantidad en stock: {{stock}}</h5>
-        <button id={{_id}}>Agregar al carrito</button>
+
+        <form onsubmit="addToCart(event, '{{../cartId}}', '{{_id}}')" method="post" id="form">
+            <input type="submit" id={{_id}} value="Agregar al carrito">
+        </form>
+
     </div>
 
-{{/each}}
+    {{/each}}
 
 </div>
+
+<script>
+    async function addToCart(event, cartId, productId) {
+        event.preventDefault();
+
+        const response = await fetch(`/api/cart/${cartId}/product/${productId}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+        });
+
+        const data = await response.json();
+        console.log(data);
+    }
+</script>
