@@ -38,7 +38,7 @@ router.get("/cartUser", passport.authenticate("jwt", {session: false}), async (r
         const userCart = await cart.getCartById(cartId);
         arrayProducts = userCart[0]?.hasOwnProperty("products") ? userCart[0].products : null;
         
-        res.render("cart", { arrayProducts });
+        res.render("cart", { arrayProducts, cartId });
     } catch (error) {
         console.log(error);
     }
