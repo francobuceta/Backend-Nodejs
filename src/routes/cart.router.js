@@ -2,6 +2,7 @@ import { Router } from "express";
 import passport from "passport";
 import cookieParser from 'cookie-parser';
 import config from "../config/config.js";
+import { isUser } from "../dao/middlewares/middlewares.js";
 import {
     getCartByIdController,
     createCartController,
@@ -31,7 +32,7 @@ router.get("/userCart", async (req, res) => {
 router.post("/", createCartController);
 
 //Agregar producto a carrito
-router.post("/:cid/product/:pid", addProductToCartController);
+router.post("/:cid/product/:pid", passport.authenticate("jwt", {session: false}), isUser, addProductToCartController);
 
 //Actualizar carrito con arreglo de productos
 router.put("/:cid", updateCartProductsByArrayController);
