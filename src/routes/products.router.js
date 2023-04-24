@@ -1,4 +1,8 @@
 import { Router } from "express";
+import { isAdmin } from "../dao/middlewares/middewares.js";
+import passport from "passport";
+import cookieParser from 'cookie-parser';
+import config from "../config/config.js";
 import { 
     getProductByIdController, 
     getPaginationController, 
@@ -9,6 +13,9 @@ import {
 
 const router = Router();
 
+//Cookie
+const cookieKey = config.COOKIE_KEY;
+router.use(cookieParser(cookieKey));
 
 //Consultar por paginacion
 router.get("/", getPaginationController);
@@ -17,7 +24,7 @@ router.get("/", getPaginationController);
 router.get("/:id", getProductByIdController);
 
 //Agregar un producto
-router.post("/", addProductController);
+router.post("/", passport.authenticate("jwt", {session: false}), isAdmin, addProductController);
 
 //Actualizar un producto
 router.put("/:id", updateProductController);

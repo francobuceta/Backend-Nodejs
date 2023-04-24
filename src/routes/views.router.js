@@ -32,10 +32,11 @@ router.get("/products", passport.authenticate("jwt", {session: false}), async (r
 //Carrito
 router.get("/cartUser", passport.authenticate("jwt", {session: false}), async (req, res) => {
     const { cartId } = req.user.cart;
+    let arrayProducts;
 
     try {
         const userCart = await cart.getCartById(cartId);
-        const arrayProducts = userCart[0].products;
+        arrayProducts = userCart[0]?.hasOwnProperty("products") ? userCart[0].products : null;
         
         res.render("cart", { arrayProducts });
     } catch (error) {
