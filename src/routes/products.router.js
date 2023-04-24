@@ -27,10 +27,10 @@ router.get("/:id", getProductByIdController);
 router.post("/", passport.authenticate("jwt", {session: false}), isAdmin, addProductController);
 
 //Actualizar un producto
-router.put("/:id", updateProductController);
+router.put("/:id", passport.authenticate("jwt", {session: false}), isAdmin, updateProductController);
 
 //Eliminar un producto
-router.delete("/:id", deleteProductController);
+router.delete("/:id", passport.authenticate("jwt", {session: false}), isAdmin, deleteProductController);
 
 
 export default router;
