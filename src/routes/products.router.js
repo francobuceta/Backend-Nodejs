@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { isAdmin } from "../dao/middlewares/middewares.js";
+import { isAdmin } from "../dao/middlewares/middlewares.js";
 import passport from "passport";
 import cookieParser from 'cookie-parser';
 import config from "../config/config.js";
