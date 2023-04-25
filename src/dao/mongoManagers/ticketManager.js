@@ -9,9 +9,4 @@ export default class TicketManager {
             console.log(error);
         }
     }
-
-    async verifyStock(id) {
-        const userCart = await ticketModel.findOne()
-        console.log(obj);
-    }
 }
