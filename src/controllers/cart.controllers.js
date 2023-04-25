@@ -12,6 +12,14 @@ export const getCartByIdController = async (req, res) => {
     const { cid } = req.params;
 
     const findCart = await getCartByIdService(cid);
+    //console.log(findCart[0].products);
+    console.log(findCart[0].products.map(elem => {
+        if (elem.quantity <= elem.productId.stock) {
+            return true;
+        } else {
+            return elem;
+        }
+    }));
 
     if (findCart) {
         res.json({ message: "Carrito encontrado", cart: findCart });

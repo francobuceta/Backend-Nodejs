@@ -3,6 +3,7 @@ import passport from "passport";
 import cookieParser from 'cookie-parser';
 import config from "../config/config.js";
 import { isUser } from "../dao/middlewares/middlewares.js";
+import { discountStock } from "../dao/middlewares/middlewares.js";
 import { createTicketController, verifyStockController } from "../controllers/ticket.controller.js";
 import {
     getCartByIdController,
@@ -49,7 +50,7 @@ router.delete("/:cid/product/:pid", deleteProductInCartController);
 router.delete("/:cid", emptyCartController);
 
 //Finalizar compra
-router.get("/:cid/purchase", verifyStockController, /* createTicketController */);
+router.get("/:cid/purchase", discountStock /* createTicketController */);
 
 
 
