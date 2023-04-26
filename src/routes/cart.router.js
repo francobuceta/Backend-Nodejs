@@ -50,7 +50,7 @@ router.delete("/:cid/product/:pid", deleteProductInCartController);
 router.delete("/:cid", emptyCartController);
 
 //Finalizar compra
-router.get("/:cid/purchase", discountStock, createTicketController);
+router.get("/:cid/purchase", passport.authenticate("jwt", {session: false}), discountStock, createTicketController);
 
 
 

@@ -7,7 +7,7 @@ const ticketSchema = new mongoose.Schema({
         unique: true
     },
     purchase_datetime: {
-        type: Date,
+        type: String,
         required: true,
         index: true
     },

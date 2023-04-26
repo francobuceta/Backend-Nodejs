@@ -19,6 +19,7 @@ export const isUser = (req, res, next) => {
 
 export const discountStock = async (req, res, next) => {
     const { cid } = req.params;
+    let noStockProducts = "Los siguientes productos superan el stock disponible:";
     let amount = 0;
 
     const findCart = await getCartByIdService(cid);
@@ -29,9 +30,10 @@ export const discountStock = async (req, res, next) => {
             let newStock = elem.productId.stock - elem.quantity;
             await updateProductService(elem.productId._id, { stock: newStock });
         } else {
-            res.send(`Los siguientes productos superan el stock disponible: ${elem.productId.title}`)
+            noStockProducts += ` ${elem.productId.title}`;
         }
     });
     res.locals.data = amount;
+    res.send(noStockProducts);
     next();
 }
