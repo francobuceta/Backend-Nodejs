@@ -8,6 +8,10 @@
         <h3>Producto: {{productId.title}}</h3>
         <h4>Precio unitario: $ {{productId.price}}</h4>
         <h5>Cantidad: {{quantity}}</h5>
+
+        <form onsubmit="deleteProductInCart(event, '{{../cartId}}', '{{_id}}')" method="delete">
+            <input type="submit" id={{_id}} value="Eliminar producto">
+        </form>
     </div>
 
 {{/each}}
@@ -15,7 +19,25 @@
 </div>
 
 <div>
-    <button class="products_button" onclick="location.href='/api/cart/{{cartId}}/purchase'">
+    <button class="products_button spacer" onclick="location.href='/api/cart/{{cartId}}/purchase'">
         Finalizar Compra
     </button>
 </div>
+
+
+
+<script>
+    async function deleteProductInCart(event, cartId, productId) {
+        event.preventDefault();
+
+        const response = await fetch(`/api/cart/${cartId}/product/${productId}`, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+        });
+
+        const data = await response.json();
+        console.log(data);
+    }
+</script>
