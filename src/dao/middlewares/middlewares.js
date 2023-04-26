@@ -1,4 +1,4 @@
-import { getCartByIdService } from "../../services/cart.services.js";
+import { getCartByIdService, deleteProductInCartService } from "../../services/cart.services.js";
 import { updateProductService } from "../../services/products.services.js";
 
 export const isAdmin = (req, res, next) => {
@@ -29,6 +29,7 @@ export const discountStock = async (req, res, next) => {
             amount += elem.productId.price;
             let newStock = elem.productId.stock - elem.quantity;
             await updateProductService(elem.productId._id, { stock: newStock });
+            await deleteProductInCartService(cid, elem.productId._id);
         } else {
             noStockProducts += ` ${elem.productId.title}`;
         }
