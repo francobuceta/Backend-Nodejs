@@ -1,4 +1,4 @@
-import { getCartByIdService, deleteProductInCartService } from "../../services/cart.services.js";
+import cartService from "../../services/cart.services.js";
 import { updateProductService } from "../../services/products.services.js";
 
 export const isAdmin = (req, res, next) => {
@@ -22,7 +22,7 @@ export const discountStock = async (req, res, next) => {
     let noStockProducts = "Los siguientes productos superan el stock disponible:";
     let amount = 0;
 
-    const findCart = await getCartByIdService(cid);
+    const findCart = await cartService.getCartById(cid);
     
     findCart[0].products.map(async (elem) => {
         if (elem.quantity <= elem.productId.stock) {

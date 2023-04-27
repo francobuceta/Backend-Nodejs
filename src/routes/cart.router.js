@@ -5,15 +5,7 @@ import config from "../config/config.js";
 import { isUser } from "../dao/middlewares/middlewares.js";
 import { discountStock } from "../dao/middlewares/middlewares.js";
 import { createTicketController } from "../controllers/ticket.controller.js";
-import {
-    getCartByIdController,
-    createCartController,
-    addProductToCartController,
-    updateCartProductsByArrayController,
-    updateQuantityByQueryController,
-    deleteProductInCartController,
-    emptyCartController
-} from "../controllers/cart.controllers.js";
+import cartController from "../controllers/cart.controllers.js";
 
 
 const router = Router();
@@ -32,22 +24,22 @@ router.get("/userCart", async (req, res) => {
 })
 
 //Crear carrito
-router.post("/", createCartController);
+router.post("/", cartController.createCart);
 
 //Agregar producto a carrito
-router.post("/:cid/product/:pid", passport.authenticate("jwt", {session: false}), isUser, addProductToCartController);
+router.post("/:cid/product/:pid", passport.authenticate("jwt", {session: false}), isUser, cartController.addProductToCart);
 
 //Actualizar carrito con arreglo de productos
-router.put("/:cid", updateCartProductsByArrayController);
+router.put("/:cid", cartController.updateCartProductsByArray);
 
 //Actualizar cantidad de producto
-router.put("/:cid/product/:pid", updateQuantityByQueryController);
+router.put("/:cid/product/:pid", cartController.updateQuantityByQuery);
 
 //Eliminar producto del carrito
-router.delete("/:cid/product/:pid", deleteProductInCartController);
+router.delete("/:cid/product/:pid", cartController.deleteProductInCart);
 
 //Eliminar todos los productos del carrito
-router.delete("/:cid", emptyCartController);
+router.delete("/:cid", cartController.emptyCart);
 
 //Finalizar compra
 router.get("/:cid/purchase", passport.authenticate("jwt", {session: false}), discountStock, createTicketController);

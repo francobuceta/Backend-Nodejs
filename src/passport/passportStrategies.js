@@ -3,7 +3,7 @@ import passport from "passport";
 import { Strategy as GitHubStrategy } from "passport-github2";
 import { ExtractJwt, Strategy as JwtStrategy } from "passport-jwt";
 import config from "../config/config.js";
-import { createCartService } from "../services/cart.services.js"
+import cartService from "../services/cart.services.js";
 
 //Github Strategy
 passport.use("github", new GitHubStrategy({
@@ -15,7 +15,7 @@ passport.use("github", new GitHubStrategy({
         const user = await userModel.findOne({ email: profile._json.email });
 
         if (!user) {
-            const newCart = await createCartService({});
+            const newCart = await cartService.createCart({});
             const newUser = {
                 firstName: profile._json.name.split(" ")[0],
                 lastName: profile._json.name.split(" ")[1] || " ",

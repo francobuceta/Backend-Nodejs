@@ -1,6 +1,6 @@
 import UserManager from "../dao/mongoManagers/userManager.js";
 import { hashPassword, comparePassword } from "../utils.js";
-import { createCartService } from "./cart.services.js";
+import cartService from "./cart.services.js";
 import UserRespDto from "../dao/dto/user.dto.js";
 
 const userManager = new UserManager();
@@ -14,7 +14,7 @@ export const createUserService = async (user) => {
 
         if (!findUser) {
             const hashNewPassword = await hashPassword(password);
-            const newCart = await createCartService({});
+            const newCart = await cartService.createCart({});
             const newUser = { ...user, password: hashNewPassword, cart: {cartId: newCart._id} };
             await userManager.createUser(newUser);
             return newUser;
