@@ -4,7 +4,7 @@ import cookieParser from 'cookie-parser';
 import config from "../config/config.js";
 import { isUser } from "../dao/middlewares/middlewares.js";
 import { discountStock } from "../dao/middlewares/middlewares.js";
-import { createTicketController } from "../controllers/ticket.controller.js";
+import ticketController from "../controllers/ticket.controller.js";
 import cartController from "../controllers/cart.controllers.js";
 
 
@@ -42,7 +42,7 @@ router.delete("/:cid/product/:pid", cartController.deleteProductInCart);
 router.delete("/:cid", cartController.emptyCart);
 
 //Finalizar compra
-router.get("/:cid/purchase", passport.authenticate("jwt", {session: false}), discountStock, createTicketController);
+router.get("/:cid/purchase", passport.authenticate("jwt", {session: false}), discountStock, ticketController.createTicket);
 
 
 
