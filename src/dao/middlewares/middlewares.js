@@ -1,5 +1,5 @@
 import cartService from "../../services/cart.services.js";
-import { updateProductService } from "../../services/products.services.js";
+import productService from "../../services/products.services.js";
 
 export const isAdmin = (req, res, next) => {
     if (req.user.role === 'admin') {
@@ -29,8 +29,8 @@ export const discountStock = async (req, res, next) => {
             amount += elem.productId.price;
             let newStock = elem.productId.stock - elem.quantity;
             
-            await updateProductService(elem.productId._id, { stock: newStock });
-            await deleteProductInCartService(cid, elem.productId._id);
+            await productService.updateProduct(elem.productId._id, { stock: newStock });
+            await productService.deleteProductInCart(cid, elem.productId._id);
         } else {
             noStockProducts += ` ${elem.productId.title}`;
         }

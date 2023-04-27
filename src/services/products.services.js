@@ -2,37 +2,45 @@ import ProductManager from "../dao/mongoManagers/productManager.js";
 
 const productManager = new ProductManager();
 
-export const getPaginationService = async (category, page, limit) => {
-    const options = {}
-    
-    if (category) {
-        options.category = category
+class ProductService {
+    constructor(dao) {
+        this.dao = dao;
     }
 
-    try {
-        const products = await productManager.getPagination(options, { page, limit });
+    getPagination = async (category, page, limit) => {
+        const options = {}
+
+        if (category) {
+            options.category = category
+        }
+
+        try {
+            const products = await this.dao.getPagination(options, { page, limit });
+            return products;
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    getProductById = async (id) => {
+        const products = await this.dao.getProductById(id);
         return products;
-    } catch (error) {
-        console.log(error);
+    }
+
+    addProduct = async (obj) => {
+        const newProduct = await this.dao.addProduct(obj);
+        return newProduct;
+    }
+
+    updateProduct = async (id, obj) => {
+        const updateProduct = await this.dao.updateProduct(id, obj);
+        return updateProduct;
+    }
+
+    deleteProduct = async (id) => {
+        const deletedProduct = await this.dao.deleteProduct(id);
+        return deletedProduct;
     }
 }
 
-export const getProductByIdService = async (id) => {
-    const products = await productManager.getProductById(id);
-    return products;
-}
-
-export const addProductService = async (obj) => {
-    const newProduct = await productManager.addProduct(obj);
-    return newProduct;
-}
-
-export const updateProductService = async (id, obj) => {
-    const updateProduct = await productManager.updateProduct(id, obj);
-    return updateProduct;
-}
-
-export const deleteProductService = async (id) => {
-    const deletedProduct = await productManager.deleteProduct(id);
-    return deletedProduct;
-}
+export default new ProductService(productManager);
