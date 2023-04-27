@@ -28,6 +28,7 @@ export const discountStock = async (req, res, next) => {
         if (elem.quantity <= elem.productId.stock) {
             amount += elem.productId.price;
             let newStock = elem.productId.stock - elem.quantity;
+            
             await updateProductService(elem.productId._id, { stock: newStock });
             await deleteProductInCartService(cid, elem.productId._id);
         } else {
