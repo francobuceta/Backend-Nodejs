@@ -28,7 +28,7 @@ app.use(cors());
 app.use("/api/products", ProductsRouter);
 app.use("/api/cart", CartRouter);
 app.use("/views", ViewsRouter);
-app.use("/user", UserRouter);
+app.use("/user", UserRouter.getRouter());
 app.use("/jwt", jwtRouter);
 
 //Ruta absoluta
