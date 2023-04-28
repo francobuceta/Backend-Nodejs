@@ -5,44 +5,53 @@ import UserRespDto from "../dao/dto/user.dto.js";
 
 const userManager = new UserManager();
 
-//Se crea el usuario si no existe y se le asigna la contraseña hasheada y un carrito
-export const createUserService = async (user) => {
-    const { email, password } = user;
+class UserService {
 
-    try {
-        const findUser = await userManager.findUser({ email });
-
-        if (!findUser) {
-            const hashNewPassword = await hashPassword(password);
-            const newCart = await cartService.createCart({});
-            const newUser = { ...user, password: hashNewPassword, cart: {cartId: newCart._id} };
-            await userManager.createUser(newUser);
-            return newUser;
-        } else {
-            return null;
-        }
-    } catch (error) {
-        console.log(error);
-        throw new Error(error);
+    constructor(dao) {
+        this.dao = dao;
     }
-};
-
-export const loginUserService = async (user) => {
-    const {email, password} = user;
+    
+    //Se crea el usuario si no existe y se le asigna la contraseña hasheada y un carrito
+    createUser = async (user) => {
+        const { email, password } = user;
 
         try {
-            const findUser = await userManager.findUser({ email });
+            const findUser = await this.dao.findUser({ email });
 
-            if(findUser) {
+            if (!findUser) {
+                const hashNewPassword = await hashPassword(password);
+                const newCart = await cartService.createCart({});
+                const newUser = { ...user, password: hashNewPassword, cart: { cartId: newCart._id } };
+                await this.dao.createUser(newUser);
+                return newUser;
+            } else {
+                return null;
+            }
+        } catch (error) {
+            console.log(error);
+            throw new Error(error);
+        }
+    };
+
+    loginUser = async (user) => {
+        const { email, password } = user;
+
+        try {
+            const findUser = await this.dao.findUser({ email });
+
+            if (findUser) {
                 const isPassword = await comparePassword(password, findUser.password);
-        
+
                 if (isPassword) {
                     const userRespDto = new UserRespDto(findUser);
                     return userRespDto;
                 }
-            } 
+            }
             return null;
         } catch (error) {
             console.log(error);
         }
-};
+    };
+}
+
+export default new UserService(userManager);
