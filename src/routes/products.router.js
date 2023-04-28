@@ -5,26 +5,23 @@ import cookieParser from 'cookie-parser';
 import config from "../config/config.js";
 import productController from "../controllers/products.controllers.js";
 
-const router = Router();
-
 //Cookie
 const cookieKey = config.COOKIE_KEY;
-router.use(cookieParser(cookieKey));
 
-//Consultar por paginacion
-router.get("/", productController.getPagination);
+class ProductsRouter {
+    constructor() {
+        this.router = Router();
+        this.router.use(cookieParser(cookieKey));
+        this.router.get("/", productController.getPagination);
+        this.router.get("/:id", productController.getProductById);
+        this.router.post("/", passport.authenticate("jwt", {session: false}), isAdmin, productController.addProduct);
+        this.router.put("/:id", passport.authenticate("jwt", {session: false}), isAdmin, productController.updateProduct);
+        this.router.delete("/:id", passport.authenticate("jwt", {session: false}), isAdmin, productController.deleteProduct);
+    }
 
-//Consultar producto por ID
-router.get("/:id", productController.getProductById);
+    getRouter() {
+        return this.router;
+    }
+}
 
-//Agregar un producto
-router.post("/", passport.authenticate("jwt", {session: false}), isAdmin, productController.addProduct);
-
-//Actualizar un producto
-router.put("/:id", passport.authenticate("jwt", {session: false}), isAdmin, productController.updateProduct);
-
-//Eliminar un producto
-router.delete("/:id", passport.authenticate("jwt", {session: false}), isAdmin, productController.deleteProduct);
-
-
-export default router;
+export default new ProductsRouter();
