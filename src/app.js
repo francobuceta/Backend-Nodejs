@@ -26,7 +26,7 @@ app.use(cors());
 
 //Redireccionamiento a los archivos
 app.use("/api/products", ProductsRouter.getRouter());
-app.use("/api/cart", CartRouter);
+app.use("/api/cart", CartRouter.getRouter());
 app.use("/views", ViewsRouter);
 app.use("/user", UserRouter.getRouter());
 app.use("/jwt", jwtRouter);

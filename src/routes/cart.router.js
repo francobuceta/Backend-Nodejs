@@ -7,43 +7,27 @@ import { discountStock } from "../dao/middlewares/middlewares.js";
 import ticketController from "../controllers/ticket.controller.js";
 import cartController from "../controllers/cart.controllers.js";
 
-
-const router = Router();
-
 //Cookie
 const cookieKey = config.COOKIE_KEY;
-router.use(cookieParser(cookieKey));
 
-//Rutas
-//Consultar carrito por ID
+class CartRouter {
+    constructor() {
+        this.router = Router();
+        this.router.use(cookieParser(cookieKey));
+        /* router.get("/:cid", getCartByIdController); */
+        this.router.get("/userCart", cartController.showCart);
+        this.router.post("/", cartController.createCart);
+        this.router.post("/:cid/product/:pid", passport.authenticate("jwt", { session: false }), isUser, cartController.addProductToCart);
+        this.router.put("/:cid", cartController.updateCartProductsByArray);
+        this.router.put("/:cid/product/:pid", cartController.updateQuantityByQuery);
+        this.router.delete("/:cid/product/:pid", cartController.deleteProductInCart);
+        this.router.delete("/:cid", cartController.emptyCart);
+        this.router.get("/:cid/purchase", passport.authenticate("jwt", { session: false }), discountStock, ticketController.createTicket);
+    }
 
-/* router.get("/:cid", getCartByIdController); */
+    getRouter() {
+        return this.router;
+    }
+}
 
-router.get("/userCart", async (req, res) => {
-    res.redirect("/views/cartUser");
-})
-
-//Crear carrito
-router.post("/", cartController.createCart);
-
-//Agregar producto a carrito
-router.post("/:cid/product/:pid", passport.authenticate("jwt", {session: false}), isUser, cartController.addProductToCart);
-
-//Actualizar carrito con arreglo de productos
-router.put("/:cid", cartController.updateCartProductsByArray);
-
-//Actualizar cantidad de producto
-router.put("/:cid/product/:pid", cartController.updateQuantityByQuery);
-
-//Eliminar producto del carrito
-router.delete("/:cid/product/:pid", cartController.deleteProductInCart);
-
-//Eliminar todos los productos del carrito
-router.delete("/:cid", cartController.emptyCart);
-
-//Finalizar compra
-router.get("/:cid/purchase", passport.authenticate("jwt", {session: false}), discountStock, ticketController.createTicket);
-
-
-
-export default router;
+export default new CartRouter();

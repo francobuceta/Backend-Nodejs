@@ -67,6 +67,10 @@ class CartController {
         cart ? res.json({ message: "Carrito vaciado con éxito", cart })
             : res.json({ message: "Error al vaciar el carrito", cart })
     }
+
+    showCart = async (req, res) => {
+        res.redirect("/views/cartUser");
+    }
 }
 
 export default new CartController();
