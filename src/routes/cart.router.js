@@ -2,8 +2,7 @@ import { Router } from "express";
 import passport from "passport";
 import cookieParser from 'cookie-parser';
 import config from "../config/config.js";
-import { isUser } from "../dao/middlewares/middlewares.js";
-import { discountStock } from "../dao/middlewares/middlewares.js";
+import { isUser, discountStock, sendEmail } from "../dao/middlewares/middlewares.js";
 import ticketController from "../controllers/ticket.controller.js";
 import cartController from "../controllers/cart.controllers.js";
 
@@ -22,7 +21,7 @@ class CartRouter {
         this.router.put("/:cid/product/:pid", cartController.updateQuantityByQuery);
         this.router.delete("/:cid/product/:pid", cartController.deleteProductInCart);
         this.router.delete("/:cid", cartController.emptyCart);
-        this.router.get("/:cid/purchase", passport.authenticate("jwt", { session: false }), discountStock, ticketController.createTicket);
+        this.router.get("/:cid/purchase", passport.authenticate("jwt", { session: false }), discountStock, sendEmail,ticketController.createTicket);
     }
 
     getRouter() {

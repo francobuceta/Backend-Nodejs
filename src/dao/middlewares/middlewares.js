@@ -1,5 +1,6 @@
 import cartService from "../../services/cart.services.js";
 import productService from "../../services/products.services.js";
+import { transporter } from "../../utils.js";
 
 export const isAdmin = (req, res, next) => {
     if (req.user.role === 'admin') {
@@ -30,12 +31,28 @@ export const discountStock = async (req, res, next) => {
             let newStock = elem.productId.stock - elem.quantity;
             
             await productService.updateProduct(elem.productId._id, { stock: newStock });
-            await productService.deleteProductInCart(cid, elem.productId._id);
+            await cartService.deleteProductInCart(cid, elem.productId._id);
         } else {
             noStockProducts += ` ${elem.productId.title}`;
         }
     });
     res.locals.data = amount;
     res.send(noStockProducts);
+    next();
+}
+
+//Envío de emails
+export const sendEmail = async (req, res, next) => {
+    const { email } = req.user;
+    try {
+        await transporter.sendMail({
+            from: "E-commerce",
+            to: email,
+            subject: "Nueva Compra",
+            text: "Realizaste una nueva compra"
+        });
+    } catch (error) {
+        console.log(error);
+    }
     next();
 }
