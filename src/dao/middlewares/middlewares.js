@@ -41,7 +41,7 @@ export const discountStock = async (req, res, next) => {
     next();
 }
 
-//Envío de emails
+//Envío de email con nodemailer
 export const sendEmail = async (req, res, next) => {
     const { email } = req.user;
     try {

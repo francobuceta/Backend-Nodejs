@@ -3,6 +3,7 @@ import { Router } from "express";
 import cookieParser from 'cookie-parser';
 import { generateToken } from "../utils.js";
 import config from "../config/config.js";
+import { transporter } from "../utils.js";
 
 const router = Router();
 
@@ -16,7 +17,17 @@ class UserController {
         const newUser = await userService.createUser(req.body);
     
         if (newUser) {
-            res.redirect("/views/login");
+            try {
+                await transporter.sendMail({  //Envio de email al usuario si pudo registrarse correctamente
+                    from: "E-commerce",
+                    to: newUser.email,
+                    subject: "Usuario Nuevo",
+                    text: `Gracias por registrarte en nuestro sitio ${newUser.firstName}`
+                });
+                res.redirect("/views/login");
+            } catch (error) {
+                console.log(error);
+            }
         } else {
             res.redirect("/views/errorRegister");
         } 
