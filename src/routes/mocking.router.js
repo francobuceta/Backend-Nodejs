@@ -9,12 +9,23 @@ const createProducts = () => {
         title: faker.commerce.product(),
         description: faker.commerce.productDescription(),
         price: faker.commerce.price(),
-        code: faker.datatype.string(5),
-        stock: faker.datatype.number({ max: 100 }),
+        code: faker.random.alphaNumeric(5),
+        stock: faker.random.numeric(2),
         category: faker.commerce.department(),
     }
+
+    return product;
 }
 
-router.get("/mockingproducts", (req, res) => {
+router.get("/", (req, res) => {
+    const products = [];
 
-})
+    for (let i = 0; i <= 100; i++) {
+        const product = createProducts();
+        products.push(product);
+    }
+
+    res.send({ products });
+});
+
+export default router;

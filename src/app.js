@@ -3,6 +3,7 @@ import ProductsRouter from "./routes/products.router.js";
 import CartRouter from "./routes/cart.router.js";
 import ViewsRouter from "./routes/views.router.js";
 import UserRouter from "./routes/user.router.js";
+import MockRouter from "./routes/mocking.router.js";
 import { __dirname } from "./utils.js"
 import handlebars from "express-handlebars";
 import { Server } from 'socket.io';
@@ -30,6 +31,7 @@ app.use("/api/cart", CartRouter.getRouter());
 app.use("/views", ViewsRouter);
 app.use("/user", UserRouter.getRouter());
 app.use("/jwt", jwtRouter);
+app.use("/mockingproducts", MockRouter);
 
 //Ruta absoluta
 app.use(express.static(__dirname + "/public"));
