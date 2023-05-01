@@ -4,6 +4,7 @@ import CartRouter from "./routes/cart.router.js";
 import ViewsRouter from "./routes/views.router.js";
 import UserRouter from "./routes/user.router.js";
 import MockRouter from "./routes/mocking.router.js";
+import { errorMiddleware } from './errors/errors.middleware.js';
 import { __dirname } from "./utils.js"
 import handlebars from "express-handlebars";
 import { Server } from 'socket.io';
@@ -32,6 +33,9 @@ app.use("/views", ViewsRouter);
 app.use("/user", UserRouter.getRouter());
 app.use("/jwt", jwtRouter);
 app.use("/mockingproducts", MockRouter);
+
+//Middleware de errores
+app.use(errorMiddleware);
 
 //Ruta absoluta
 app.use(express.static(__dirname + "/public"));

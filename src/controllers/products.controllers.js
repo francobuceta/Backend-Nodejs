@@ -1,4 +1,6 @@
 import productService from "../services/products.services.js";
+import CustomError from "../errors/CustomError.js";
+import { ErrorsName, ErrorsMessage, ErrorsCause } from "../errors/errors.enum.js";
 
 class ProductController {
 
@@ -34,7 +36,11 @@ class ProductController {
         if (productId) {
             res.json({ message: "Producto encontrado", productId });
         } else {
-            res.json({ message: "Producto no encontrado" });
+            CustomError.createCustomError({
+                name: ErrorsName.PRODUCT_DATA_INCOMPLETE,
+                message: ErrorsMessage.PRODUCT_DATA_INCOMPLETE,
+                cause: ErrorsCause.PRODUCT_DATA_INCOMPLETE
+            });
         }
     }
     
