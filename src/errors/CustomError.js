@@ -1,0 +1,8 @@
+//Manejo de errores
+export default class CustomError {
+    createCustomError({ name="Error", cause, message }) {
+        const newError = new Error(message, {cause});
+        newError.name = name;
+        throw newError;
+    }
+}   
