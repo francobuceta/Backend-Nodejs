@@ -1,4 +1,6 @@
 import { productsModel } from "../models/products.model.js";
+import CustomError from "../../errors/CustomError.js";
+import { ErrorsName, ErrorsCause, ErrorsMessage } from "../../errors/errors.enum.js";
 
 export default class ProductManager {
     async getProducts() {
@@ -25,7 +27,12 @@ export default class ProductManager {
             const products = await productsModel.findById(id);
             return products;
         } catch (error) {
-            console.log(error);
+            //console.log("hola",error);
+            CustomError.createCustomError({
+                name: ErrorsName.PRODUCT_DATA_INCOMPLETE,
+                message: error.message,
+                cause: ErrorsCause.PRODUCT_DATA_INCOMPLETE
+            });
         }
     }
 
