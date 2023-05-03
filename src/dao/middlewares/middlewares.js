@@ -41,6 +41,15 @@ export const discountStock = async (req, res, next) => {
     next();
 }
 
+//Middleware para manejo de errores
+export const errorMiddleware = (error, req, res, next) => {
+    res.send({
+        status: error.name,
+        message: error.message,
+        cause: error.cause
+    });
+}
+
 //Envío de email con nodemailer
 export const sendEmail = async (req, res, next) => {
     const { email } = req.user;
@@ -56,3 +65,4 @@ export const sendEmail = async (req, res, next) => {
     }
     next();
 }
+

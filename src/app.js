@@ -4,7 +4,7 @@ import CartRouter from "./routes/cart.router.js";
 import ViewsRouter from "./routes/views.router.js";
 import UserRouter from "./routes/user.router.js";
 import MockRouter from "./routes/mocking.router.js";
-import { errorMiddleware } from './errors/errors.middleware.js';
+import { errorMiddleware } from './dao/middlewares/middlewares.js';
 import { __dirname } from "./utils.js"
 import handlebars from "express-handlebars";
 import { Server } from 'socket.io';
@@ -19,7 +19,7 @@ import config from "./config/config.js";
 import cors from "cors";
 
 //Servidor
-const app = express(); 
+const app = express();
 
 //Configuracion inicial express
 app.use(express.json());
