@@ -1,0 +1,2 @@
+{ message: 'error', level: 'error' }
+{ message: 'fatal', level: 'fatal' }
