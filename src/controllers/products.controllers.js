@@ -1,6 +1,4 @@
 import productService from "../services/products.services.js";
-import CustomError from "../errors/CustomError.js";
-import { ErrorsName, ErrorsCause, ErrorsMessage } from "../errors/errors.enum.js";
 
 class ProductController {
 
