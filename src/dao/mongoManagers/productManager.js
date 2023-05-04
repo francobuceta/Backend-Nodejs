@@ -57,18 +57,9 @@ export default class ProductManager {
     }
 
     async updateProduct(id, obj) {
-        console.log(obj);
         try {
-            if (id.length === 24 && Object.keys(obj).length !== 0) {
-                const updateProduct = await productsModel.findByIdAndUpdate(id, obj);
-                return updateProduct;
-            } else {
-                CustomError.createCustomError({
-                    name: ErrorsName.PRODUCT_DATA_INCOMPLETE,
-                    message: ErrorsMessage.PRODUCT_DATA_INCOMPLETE,
-                    cause: ErrorsCause.PRODUCT_DATA_INCOMPLETE
-                });
-            }
+            const updateProduct = await productsModel.findByIdAndUpdate(id, obj);
+            return updateProduct;
         } catch (error) {
             throw error;
         }
