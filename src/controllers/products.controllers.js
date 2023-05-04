@@ -59,24 +59,31 @@ class ProductController {
         
     }
     
-    updateProduct = async (req, res) => {
+    updateProduct = async (req, res, next) => {
         const { id } = req.params;
         const campo = req.body;
     
-        const update = await productService.updateProduct(id, campo);
-    
-        if (update) {
-            res.json({ message: "Producto actualizado con exito", update });
-        } else {
-            res.json({ message: "Producto no pudo ser actualizado" });
+        try {
+            const update = await productService.updateProduct(id, campo);
+            if (update) {
+                res.json({ message: "Producto actualizado con exito", update });
+            }
+        } catch (error) {
+            next(error);
         }
     }
     
-    deleteProduct = async (req, res) => {
+    deleteProduct = async (req, res, next) => {
         const { id } = req.params;
-        await productService.deleteProduct(id);
-    
-        res.json({ message: "Producto eliminado con exito" });
+        
+        try {
+            const deletedProduct = await productService.deleteProduct(id);
+            if (deletedProduct) {
+                res.json({ message: "Producto eliminado con exito" });
+            }
+        } catch (error) {
+            next(error);
+        }
     }
 }
 

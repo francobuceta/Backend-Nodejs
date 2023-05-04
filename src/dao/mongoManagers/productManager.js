@@ -24,7 +24,7 @@ export default class ProductManager {
 
     async getProductById(id) {
         try {
-            if (id.length === 24 || id === undefined) {
+            if (id.length === 24) {
                 const products = await productsModel.findById(id);
                 return products;
             } else {
@@ -57,20 +57,37 @@ export default class ProductManager {
     }
 
     async updateProduct(id, obj) {
+        console.log(obj);
         try {
-            const updateProduct = await productsModel.findByIdAndUpdate(id, obj);
-            return updateProduct;
+            if (id.length === 24 && Object.keys(obj).length !== 0) {
+                const updateProduct = await productsModel.findByIdAndUpdate(id, obj);
+                return updateProduct;
+            } else {
+                CustomError.createCustomError({
+                    name: ErrorsName.PRODUCT_DATA_INCOMPLETE,
+                    message: ErrorsMessage.PRODUCT_DATA_INCOMPLETE,
+                    cause: ErrorsCause.PRODUCT_DATA_INCOMPLETE
+                });
+            }
         } catch (error) {
-            console.log(error);
+            throw error;
         }
     }
 
     async deleteProduct(id) {
         try {
-            const deletedProduct = await productsModel.findByIdAndDelete(id);
-            return deletedProduct;
+            if (id.length === 24) {
+                const deletedProduct = await productsModel.findByIdAndDelete(id);
+                return deletedProduct;
+            } else {
+                CustomError.createCustomError({
+                    name: ErrorsName.PRODUCT_DATA_INCOMPLETE,
+                    message: ErrorsMessage.PRODUCT_DATA_INCOMPLETE,
+                    cause: ErrorsCause.PRODUCT_DATA_INCOMPLETE
+                });
+            }
         } catch (error) {
-            console.log(error);
+            throw error;
         }
     }
 }
