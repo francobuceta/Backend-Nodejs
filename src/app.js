@@ -34,9 +34,6 @@ app.use("/user", UserRouter.getRouter());
 app.use("/jwt", jwtRouter);
 app.use("/mockingproducts", MockRouter);
 
-//Middleware de errores
-app.use(errorMiddleware);
-
 //Ruta absoluta
 app.use(express.static(__dirname + "/public"));
 
@@ -65,6 +62,8 @@ app.use(passport.initialize());
 //Pasport guarda la información de session
 app.use(passport.session());
 
+//Middleware de errores
+app.use(errorMiddleware);
 
 //HTTP server
 

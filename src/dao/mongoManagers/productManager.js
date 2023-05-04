@@ -24,24 +24,35 @@ export default class ProductManager {
 
     async getProductById(id) {
         try {
-            const products = await productsModel.findById(id);
-            return products;
+            if (id.length === 24 || id === undefined) {
+                const products = await productsModel.findById(id);
+                return products;
+            } else {
+                CustomError.createCustomError({
+                    name: ErrorsName.PRODUCT_DATA_INCOMPLETE,
+                    message: ErrorsMessage.PRODUCT_DATA_INCOMPLETE,
+                    cause: ErrorsCause.PRODUCT_DATA_INCOMPLETE
+                });
+            }
         } catch (error) {
-            //console.log("hola",error);
-            CustomError.createCustomError({
-                name: ErrorsName.PRODUCT_DATA_INCOMPLETE,
-                message: error.message,
-                cause: ErrorsCause.PRODUCT_DATA_INCOMPLETE
-            });
+            throw error;
         }
     }
 
     async addProduct(obj) {
         try {
-            const newProduct = await productsModel.create(obj);
-            return newProduct;
+            if (obj) {
+                const newProduct = await productsModel.create(obj);
+                return newProduct;
+            } else {
+                CustomError.createCustomError({
+                    name: ErrorsName.PRODUCT_DATA_INCOMPLETE,
+                    message: ErrorsMessage.PRODUCT_DATA_INCOMPLETE,
+                    cause: ErrorsCause.PRODUCT_DATA_INCOMPLETE
+                });
+            }
         } catch (error) {
-            console.log(error);
+            throw error;
         }
     }
 

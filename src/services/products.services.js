@@ -1,6 +1,4 @@
 import ProductManager from "../dao/mongoManagers/productManager.js";
-import CustomError from "../errors/CustomError.js";
-import { ErrorsName, ErrorsCause, ErrorsMessage } from "../errors/errors.enum.js";
 
 const productManager = new ProductManager();
 
@@ -29,17 +27,17 @@ class ProductService {
             const products = await this.dao.getProductById(id);
             return products;
         } catch (error) {
-            CustomError.createCustomError({
-                name: ErrorsName.PRODUCT_DATA_INCOMPLETE,
-                message: error.message,
-                cause: ErrorsCause.PRODUCT_DATA_INCOMPLETE
-            });
+            throw error;
         }
     }
 
     addProduct = async (obj) => {
-        const newProduct = await this.dao.addProduct(obj);
-        return newProduct;
+        try {
+            const newProduct = await this.dao.addProduct(obj);
+            return newProduct;
+        } catch (error) {
+            throw error;
+        }
     }
 
     updateProduct = async (id, obj) => {
