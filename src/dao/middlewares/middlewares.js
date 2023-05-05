@@ -1,9 +1,10 @@
 import cartService from "../../services/cart.services.js";
 import productService from "../../services/products.services.js";
+import config from "../../config/config.js";
 import { transporter } from "../../utils.js";
 
 export const isAdmin = (req, res, next) => {
-    if (req.user.role === 'admin') {
+    if (req.user.email === config.ADMIN_KEY) {
         return next();
     } else {
         res.status(401).json({ error: "Unauthorized" });
@@ -11,7 +12,7 @@ export const isAdmin = (req, res, next) => {
 }
 
 export const isUser = (req, res, next) => {
-    if (req.user.role === 'user') {
+    if (req.user.role === config.USER_KEY) {
         return next();
     } else {
         res.status(401).json({ error: "Unauthorized" });
