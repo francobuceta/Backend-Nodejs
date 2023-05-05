@@ -19,7 +19,6 @@ router.use(cookieParser(cookieKey));
 router.get("/products", passport.authenticate("jwt", {session: false}), async (req, res) => {
     const userData = req.user;
     const cartId = userData.cart.cartId;
-    console.log(cartId);
     
     try {
         const products = await product.getProducts();
