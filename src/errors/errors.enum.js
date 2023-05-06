@@ -1,11 +1,20 @@
 export const ErrorsName = {
-    PRODUCT_DATA_INCOMPLETE: "Error products"
+    //Products
+    PRODUCT_DATA_INCOMPLETE: "Error products",
+    //Users
+    USER_DATA_INCOMPLETE: "Error users"
 }
 
 export const ErrorsMessage = {
-    PRODUCT_DATA_INCOMPLETE: "Request failed. Valid properties required"
+    //Products
+    PRODUCT_DATA_INCOMPLETE: "Request failed. Valid properties required",
+    //Users
+    USER_DATA_INCOMPLETE:   "Request failed. Valid properties required"
 }
 
 export const ErrorsCause = {
-    PRODUCT_DATA_INCOMPLETE: "Properties missing"
+    //Products
+    PRODUCT_DATA_INCOMPLETE: "Properties missing",
+    //Users
+    USER_DATA_INCOMPLETE: "Invalid or incomplete"
 }

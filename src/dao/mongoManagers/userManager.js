@@ -14,9 +14,9 @@ export default class UserManager {
                 return userRespDto;
             } else {
                 CustomError.createCustomError({
-                    name: ErrorsName.PRODUCT_DATA_INCOMPLETE,
-                    message: ErrorsMessage.PRODUCT_DATA_INCOMPLETE,
-                    cause: ErrorsCause.PRODUCT_DATA_INCOMPLETE
+                    name: ErrorsName.USER_DATA_INCOMPLETE,
+                    message: ErrorsMessage.USER_DATA_INCOMPLETE,
+                    cause: ErrorsCause.USER_DATA_INCOMPLETE
                 });
             }
         } catch (error) {
@@ -27,7 +27,16 @@ export default class UserManager {
     async findUser(email) {
         try {
             const findUser = await userModel.findOne(email);
-            return findUser;
+
+            if (findUser) {
+                return findUser;
+            } else {
+                CustomError.createCustomError({
+                    name: ErrorsName.USER_DATA_INCOMPLETE,
+                    message: ErrorsMessage.USER_DATA_INCOMPLETE,
+                    cause: ErrorsCause.USER_DATA_INCOMPLETE
+                });
+            }
         } catch (error) {
             throw error;
         }
