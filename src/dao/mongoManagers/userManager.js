@@ -1,16 +1,26 @@
 import { userModel } from "../models/user.model.js";
 import UserRespDto from "../dto/user.dto.js";
+import CustomError from "../../errors/CustomError.js";
+import { ErrorsName, ErrorsCause, ErrorsMessage } from "../../errors/errors.enum.js";
 
 export default class UserManager {
 
     async createUser(user) {
         try {
             const newUser = await userModel.create(user);
-            const userRespDto = new UserRespDto(newUser);
-            return userRespDto;
+
+            if (newUser) {
+                const userRespDto = new UserRespDto(newUser);
+                return userRespDto;
+            } else {
+                CustomError.createCustomError({
+                    name: ErrorsName.PRODUCT_DATA_INCOMPLETE,
+                    message: ErrorsMessage.PRODUCT_DATA_INCOMPLETE,
+                    cause: ErrorsCause.PRODUCT_DATA_INCOMPLETE
+                });
+            }
         } catch (error) {
-            console.log(error);
-            throw new Error(error);
+            throw error;
         }
     }
 

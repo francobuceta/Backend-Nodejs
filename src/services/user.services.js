@@ -28,8 +28,7 @@ class UserService {
                 return null;
             }
         } catch (error) {
-            console.log(error);
-            throw new Error(error);
+            throw error;
         }
     };
 

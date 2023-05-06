@@ -13,7 +13,7 @@ router.use(cookieParser(cookieKey));
 
 class UserController {
     
-    createUser = async (req, res) => {
+    createUser = async (req, res, next) => {
         const newUser = await userService.createUser(req.body);
     
         if (newUser) {
@@ -26,7 +26,7 @@ class UserController {
                 });
                 res.redirect("/views/login");
             } catch (error) {
-                console.log(error);
+                next(error);
             }
         } else {
             res.redirect("/views/errorRegister");
