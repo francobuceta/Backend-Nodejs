@@ -12,12 +12,12 @@ const cookieKey = config.COOKIE_KEY;
 router.use(cookieParser(cookieKey));
 
 class UserController {
-    
+
     createUser = async (req, res, next) => {
-        const newUser = await userService.createUser(req.body);
-    
-        if (newUser) {
-            try {
+        try {
+            const newUser = await userService.createUser(req.body);
+
+            if (newUser) {
                 await transporter.sendMail({  //Envio de email al usuario si pudo registrarse correctamente
                     from: "E-commerce",
                     to: newUser.email,
@@ -25,17 +25,17 @@ class UserController {
                     text: `Gracias por registrarte en nuestro sitio ${newUser.firstName}`
                 });
                 res.redirect("/views/login");
-            } catch (error) {
-                next(error);
+            } else {
+                res.redirect("/views/errorRegister");
             }
-        } else {
-            res.redirect("/views/errorRegister");
-        } 
-    } 
-    
-    loginUser = async (req, res) => {
+        } catch (error) {
+            next(error);
+        }
+    }
+
+    loginUser = async (req, res, next) => {
         const newUser = await userService.loginUser(req.body);
-    
+
         if (newUser) {
             const token = generateToken(newUser);
             return res.cookie("token", token, { httpOnly: true }).redirect("/views/products");
@@ -43,20 +43,20 @@ class UserController {
             res.redirect("/views/errorLogin");
         }
     }
-    
+
     logoutUser = async (req, res) => {
         res.clearCookie("token").redirect("/views/login");
     }
-    
+
     loginGithub = async (req, res) => {
         const user = req.user;
-    
+
         const token = generateToken(user);
         return res.cookie("token", token, { httpOnly: true }).redirect("/views/products");
     }
-    
+
     loginCurrent = async (req, res) => {
-        res.redirect("/views/profile"); 
+        res.redirect("/views/profile");
     }
 }
 
