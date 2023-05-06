@@ -34,13 +34,17 @@ class UserController {
     }
 
     loginUser = async (req, res, next) => {
-        const newUser = await userService.loginUser(req.body);
+        try {
+            const newUser = await userService.loginUser(req.body);
 
-        if (newUser) {
-            const token = generateToken(newUser);
-            return res.cookie("token", token, { httpOnly: true }).redirect("/views/products");
-        } else {
-            res.redirect("/views/errorLogin");
+            if (newUser) {
+                const token = generateToken(newUser);
+                return res.cookie("token", token, { httpOnly: true }).redirect("/views/products");
+            } else {
+                res.redirect("/views/errorLogin");
+            }
+        } catch (error) {
+            next(error);
         }
     }
 

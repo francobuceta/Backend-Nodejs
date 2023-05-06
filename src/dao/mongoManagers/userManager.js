@@ -25,7 +25,11 @@ export default class UserManager {
     }
 
     async findUser(email) {
-        const findUser = await userModel.findOne(email);
-        return findUser;
+        try {
+            const findUser = await userModel.findOne(email);
+            return findUser;
+        } catch (error) {
+            throw error;
+        }
     }
 }
