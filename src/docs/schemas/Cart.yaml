@@ -1,15 +1,43 @@
+#Get cart by id
 components:
   schemas:
-    Cart:
+    CartItem:
       type: object
       properties:
-        products:
-          type: array
-          productId: 
-            type: string
-          quantity:
-            type: number
+        productId:
+          $ref: '#/components/schemas/Product'
+        quantity:
+          type: integer
+        _id:
+          type: string
 
-      example:
-        id: 5uylhtfgo7f5lhf5lfh
-        quantity: 2
+    Product:
+      type: object
+      properties:
+        _id:
+          type: string
+        title:
+          type: string
+        description:
+          type: string
+        price:
+          type: number
+        thumbnail:
+          type: array
+          items:
+            type: string
+        code:
+          type: string
+        stock:
+          type: integer
+        category:
+          type: string
+        status:
+          type: boolean
+        __v:
+          type: integer
+
+    Cart:
+      type: array
+      items:
+        $ref: '#/components/schemas/CartItem'

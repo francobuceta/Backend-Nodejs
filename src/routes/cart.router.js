@@ -13,7 +13,7 @@ class CartRouter {
     constructor() {
         this.router = Router();
         this.router.use(cookieParser(cookieKey));
-        /* router.get("/:cid", getCartByIdController); */
+        this.router.get("/:cid", cartController.getCartById);
         this.router.get("/userCart", cartController.showCart);
         this.router.post("/", cartController.createCart);
         this.router.post("/:cid/product/:pid", passport.authenticate("jwt", { session: false }), isUser, cartController.addProductToCart);
@@ -21,7 +21,7 @@ class CartRouter {
         this.router.put("/:cid/product/:pid", cartController.updateQuantityByQuery);
         this.router.delete("/:cid/product/:pid", cartController.deleteProductInCart);
         this.router.delete("/:cid", cartController.emptyCart);
-        this.router.get("/:cid/purchase", passport.authenticate("jwt", { session: false }), discountStock, sendEmail,ticketController.createTicket);
+        this.router.get("/:cid/purchase", passport.authenticate("jwt", { session: false }), discountStock, sendEmail, ticketController.createTicket);
     }
 
     getRouter() {
