@@ -1,0 +1,15 @@
+components:
+  schemas:
+    Cart:
+      type: object
+      properties:
+        products:
+          type: array
+          productId: 
+            type: string
+          quantity:
+            type: number
+
+      example:
+        id: 5uylhtfgo7f5lhf5lfh
+        quantity: 2
