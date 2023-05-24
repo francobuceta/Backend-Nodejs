@@ -1,7 +1,7 @@
 paths:
-  /api/cart/{cid}:
-    get:
-      summary: Get cart by Id
+  /api/cart/:cid/product/:pid:
+    post:
+      summary: Add Product To Cart
       tags:
         - Cart
       parameters:
@@ -10,9 +10,14 @@ paths:
           description: Id Cart
           schema:
             type: string
+        - name: pid
+          in: path
+          description: Id Product
+          schema:
+            type: string
       responses:
         "200":
-          description: One Cart
+          description: Cart created successfully
           content:
             application/json:
               schema:

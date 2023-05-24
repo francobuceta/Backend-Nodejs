@@ -1,4 +1,4 @@
-#Get cart by id
+#Cart & Product
 components:
   schemas:
     CartItem:

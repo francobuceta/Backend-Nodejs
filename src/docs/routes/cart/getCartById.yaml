@@ -1,0 +1,40 @@
+paths:
+  /api/cart/{cid}:
+    get:
+      summary: Get cart by Id
+      tags:
+        - Cart
+      parameters:
+        - name: cid
+          in: path
+          description: Id Cart
+          schema:
+            type: string
+      responses:
+        "200":
+          description: One Cart
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CartItem"
+              example:
+                _id: "6403bd4b4e6065720c6ea0ca"
+                products:
+                  - productId:
+                      _id: "6403bce94e6065720c6ea0c0"
+                      title: "Smart TV"
+                      description: "Este es un televisor nuevo"
+                      price: 200
+                      thumbnail:
+                        - "ruta1"
+                        - "ruta2"
+                      code: "aa127"
+                      stock: 20
+                      category: "categoria1"
+                      status: true
+                      __v: 0
+                    quantity: 20
+        "400": 
+          description: Missing data
+        "500":
+          description: Server error
