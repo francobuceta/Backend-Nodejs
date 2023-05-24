@@ -1,0 +1,75 @@
+paths:
+  /api/products:
+    get:
+      summary: Get Products Pagination
+      tags:
+        - Product
+      parameters:
+        - name: page
+          in: path
+          description: Page of Pagination
+          schema:
+            type: number
+        - name: limit
+          in: path
+          description: Limit of Pagination
+          schema:
+            type: number
+        - name: category
+          in: path
+          description: Category of Products
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Products Paginated
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Product"
+              example:
+                properties:
+                  payload:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        _id:
+                          type: string
+                        title:
+                          type: string
+                        description:
+                          type: string
+                        price:
+                          type: number
+                        thumbnail:
+                          type: array
+                          items:
+                            type: string
+                        code:
+                          type: string
+                        stock:
+                          type: integer
+                        category:
+                          type: string
+                        status:
+                          type: boolean
+                        __v:
+                          type: integer
+                  info:
+                    type: object
+                    properties:
+                      totalPages:
+                        type: integer
+                      prevPage:
+                        type: integer
+                      nextPage:
+                        type: integer
+                      hasPrevPage:
+                        type: boolean
+                      hasNextPage:
+                        type: boolean
+                      prevLink:
+                        type: string
+                      nextLink:
+                        type: string

@@ -1,3 +1,5 @@
 tags:
-  name: Cart
-  description: Documentación para endpoints del carrrito
+  - name: Cart
+    description: Documentación para endpoints del carrrito
+  - name: Product
+    description: Documentación para endpoints de los productos
