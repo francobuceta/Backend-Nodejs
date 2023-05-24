@@ -1,0 +1,45 @@
+paths:
+  /api/cart/:cid:
+    put:
+      summary: Update Cart Products By Array
+      tags:
+        - Cart
+      parameters:
+        - name: cid
+          in: path
+          description: Id Cart
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Products successfully updated
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CartItem"
+              example:
+                products:
+                  - _id: "6403bce94e6065720c6ea0c0"
+                    title: "Smart tv"
+                    description: "Este es un producto prueba"
+                    price: 100
+                    thumbnail:
+                      - "ruta1"
+                      - "ruta2"
+                    code: "af126"
+                    stock: 7
+                    category: "electronica"
+                    status: true
+                    __v: 0
+                  - _id: "6403bd014e6065720c6ea0c4"
+                    title: "Iphone"
+                    description: "Este es un producto prueba"
+                    price: 100
+                    thumbnail:
+                      - "ruta1"
+                      - "ruta2"
+                    code: "af126"
+                    stock: 7
+                    category: "electronica"
+                    status: true
+                    __v: 0
