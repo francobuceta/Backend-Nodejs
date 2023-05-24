@@ -1,4 +1,3 @@
-#Cart & Product
 components:
   schemas:
     CartItem:

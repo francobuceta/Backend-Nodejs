@@ -1,0 +1,15 @@
+paths:
+  /api/cart/:cid:
+    delete:
+      summary: Empty Cart
+      tags:
+        - Cart
+      parameters:
+        - name: cid
+          in: path
+          description: Id Cart
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Cart emptied successfully
