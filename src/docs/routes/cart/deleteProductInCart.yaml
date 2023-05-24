@@ -1,0 +1,20 @@
+paths:
+  /api/cart/:cid/product/:pid:
+    delete:
+      summary: Delete Product In Cart
+      tags:
+        - Cart
+      parameters:
+        - name: cid
+          in: path
+          description: Id Cart
+          schema:
+            type: string
+        - name: pid
+          in: path
+          description: Id Product
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Product deleted successfully
