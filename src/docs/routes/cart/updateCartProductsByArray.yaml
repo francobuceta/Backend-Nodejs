@@ -16,30 +16,34 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/CartItem"
+                $ref: "#/components/schemas/Product"
               example:
                 products:
-                  - _id: "6403bce94e6065720c6ea0c0"
-                    title: "Smart tv"
-                    description: "Este es un producto prueba"
-                    price: 100
-                    thumbnail:
-                      - "ruta1"
-                      - "ruta2"
-                    code: "af126"
-                    stock: 7
-                    category: "electronica"
-                    status: true
-                    __v: 0
-                  - _id: "6403bd014e6065720c6ea0c4"
-                    title: "Iphone"
-                    description: "Este es un producto prueba"
-                    price: 100
-                    thumbnail:
-                      - "ruta1"
-                      - "ruta2"
-                    code: "af126"
-                    stock: 7
-                    category: "electronica"
-                    status: true
-                    __v: 0
+                  - productId:
+                      _id: "6403bce94e6065720c6ea0c0"
+                      title: "Smart TV"
+                      description: "Este es un televisor nuevo"
+                      price: 200
+                      thumbnail:
+                        - "ruta1"
+                        - "ruta2"
+                      code: "aa127"
+                      stock: 20
+                      category: "categoria1"
+                      status: true
+                      __v: 0
+                    quantity: 2
+                  - productId:
+                      _id: "6403bd014e6065720c6ea0c4"
+                      title: "Iphone"
+                      description: "Este es un Iphone nuevo"
+                      price: 200
+                      thumbnail:
+                        - "ruta1"
+                        - "ruta2"
+                      code: "aa127"
+                      stock: 20
+                      category: "categoria1"
+                      status: true
+                      __v: 0
+                    quantity: 3
