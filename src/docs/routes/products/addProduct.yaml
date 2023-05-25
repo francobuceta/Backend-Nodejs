@@ -1,0 +1,25 @@
+paths:
+  /api/products/:
+    post:
+      summary: Add Product
+      tags:
+        - Product
+      responses:
+        "200":
+          description: Product successfully created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Product"
+              example:
+                  title: Celular Motorola
+                  description: Este es un producto prueba,
+                  price: 25
+                  thumbnail: [
+                    "ruta1",
+                    "ruta2"
+                  ]
+                  code: aw639
+                  stock: 21
+                  category: categoria1
+                  status: true

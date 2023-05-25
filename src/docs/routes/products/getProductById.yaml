@@ -1,0 +1,60 @@
+paths:
+  /api/products/:id:
+    get:
+      summary: Get Product By Id
+      tags:
+        - Product
+      parameters:
+        - name: id
+          in: path
+          description: Id Product
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Product successfully found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Product"
+              example:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: Mensaje de respuesta
+                  productId:
+                    type: object
+                    properties:
+                      _id:
+                        type: string
+                        description: ID del producto
+                      title:
+                        type: string
+                        description: Título del producto
+                      description:
+                        type: string
+                        description: Descripción del producto
+                      price:
+                        type: number
+                        description: Precio del producto
+                      thumbnail:
+                        type: array
+                        items:
+                          type: string
+                        description: Imágenes del producto
+                      code:
+                        type: string
+                        description: Código del producto
+                      stock:
+                        type: number
+                        description: Stock disponible del producto
+                      category:
+                        type: string
+                        description: Categoría del producto
+                      status:
+                        type: boolean
+                        description: Estado del producto
+                      __v:
+                        type: number
+                        description: Versión del producto
