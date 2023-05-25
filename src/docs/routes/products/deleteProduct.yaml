@@ -1,0 +1,15 @@
+paths:
+  /api/products/:id:
+    delete:
+      summary: Delete Product
+      tags:
+        - Product
+      parameters:
+        - name: id
+          in: path
+          description: Id Product
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Product successfully deleted

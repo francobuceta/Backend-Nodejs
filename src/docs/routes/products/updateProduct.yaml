@@ -1,0 +1,24 @@
+paths:
+  /api/products/:id:
+    put:
+      summary: Add Product
+      tags:
+        - Product
+      parameters:
+        - name: id
+          in: path
+          description: Id Product
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Product successfully updated
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Product"
+              example:
+                  title: Celular Motorola New
+                  description: Este es un producto actualizado,
+                  price: 30
+                  stock: 18
