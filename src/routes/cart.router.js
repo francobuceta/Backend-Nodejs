@@ -14,7 +14,7 @@ class CartRouter {
         this.router = Router();
         this.router.use(cookieParser(cookieKey));
         this.router.get("/:cid", cartController.getCartById);
-        this.router.get("/userCart", cartController.showCart);
+        this.router.get("/show/userCart", cartController.showCart);
         this.router.post("/", cartController.createCart);
         this.router.post("/:cid/product/:pid", passport.authenticate("jwt", { session: false }), isUser, cartController.addProductToCart);
         this.router.put("/:cid", cartController.updateCartProductsByArray);
