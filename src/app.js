@@ -49,10 +49,10 @@ app.set("views", __dirname + "/views");
 app.set("view engine", "handlebars");
 
 //Cookies
-app.use(cookieParser());
+//app.use(cookieParser()); // A eliminar
 
 //Session
-app.use(session(
+/* app.use(session(  // A eliminar
     {
         secret: 'secret key',
         resave: false,
@@ -61,24 +61,23 @@ app.use(session(
             mongoUrl: config.MONGO_URL
         })
     }
-));
+)); */
 
 //Inicializar passport
 app.use(passport.initialize());
 //Pasport guarda la información de session
-app.use(passport.session());
+//app.use(passport.session()); // A eliminar 
 
 //Middleware de errores
 app.use(errorMiddleware);
 
 //HTTP server
-
 const PORT = config.PORT;
 
-const httpServer = app.listen(PORT, () => {
+app.listen(PORT, () => {
     console.log(`Escuchando puerto ${PORT}`);
 });
 
 //Socket server
-export const socketServer = new Server(httpServer);
+//export const socketServer = new Server(httpServer);  // A eliminar
 
