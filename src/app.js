@@ -51,7 +51,7 @@ app.use(passport.initialize());
 app.use(errorMiddleware);
 
 //HTTP server
-const PORT = config.PORT;
+const PORT = config.PORT || 8080;
 
 app.listen(PORT, () => {
     console.log(`Escuchando puerto ${PORT}`);
