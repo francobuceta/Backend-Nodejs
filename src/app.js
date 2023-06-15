@@ -14,7 +14,6 @@ import "./passport/passportStrategies.js";
 import cors from "cors";
 import swaggerUi from "swagger-ui-express";
 import { swaggerSetup } from './swaggerConfig.js';
-import { SwaggerCssOptions } from './swaggerConfig.js';
 
 //Servidor
 const app = express();
@@ -32,7 +31,7 @@ app.use("/user", UserRouter.getRouter());
 app.use("/mockingproducts", MockRouter);
 app.use("/loggerTest", LoggerRouter);
 // swagger documentation endpoint
-app.use("/api/docs", swaggerUi.serve, swaggerUi.setup(swaggerSetup, SwaggerCssOptions));
+app.use("/api/docs", swaggerUi.serve, swaggerUi.setup(swaggerSetup));
 
 //Ruta absoluta
 app.use(express.static(__dirname + "/public"));
