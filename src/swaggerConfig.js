@@ -6,11 +6,18 @@ const options = {
         openapi: "3.0.0",
         info: {
             title: "Documentación API E-commerce",
-            description: "API para realizar acciones en Usuarios, Productos y Carrito",
+            description:
+                "API para realizar acciones en Usuarios, Productos y Carrito",
             version: "1.0.0",
         },
     },
-    apis: [`${__dirname}/docs/**/*.yaml`]
+    servers: [
+        {
+            url: "https://backend-nodejs-self.vercel.app",
+            description: "My API Documentation",
+        },
+    ],
+    apis: [`${__dirname}/docs/**/*.yaml`],
 };
 
 export const swaggerSetup = swaggerJSDoc(options);
