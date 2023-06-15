@@ -12,7 +12,6 @@ import passport from "passport";
 import "./dao/dbConfig.js";
 import "./passport/passportStrategies.js";
 import jwtRouter from "./routes/jwt.router.js";
-import config from "./config/config.js";
 import cors from "cors";
 import swaggerUi from "swagger-ui-express";
 import { swaggerSetup } from './swaggerConfig.js';
@@ -50,9 +49,4 @@ app.use(passport.initialize());
 //Middleware de errores
 app.use(errorMiddleware);
 
-//HTTP server
-const PORT = config.PORT || 8080;
-
-app.listen(PORT, () => {
-    console.log(`Escuchando puerto ${PORT}`);
-});
+export default app;
