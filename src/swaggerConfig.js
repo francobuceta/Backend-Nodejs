@@ -13,4 +13,8 @@ const options = {
     apis: [`${__dirname}/docs/**/*.yaml`]
 };
 
+export const SwaggerCssOptions = {
+    customCss: '.swagger-ui .topbar { display: none }'
+}
+
 export const swaggerSetup = swaggerJSDoc(options);
