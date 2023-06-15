@@ -15,6 +15,8 @@ import cors from "cors";
 import swaggerUi from "swagger-ui-express";
 import { swaggerSetup } from './swaggerConfig.js';
 
+const CSS_URL = "https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.1.0/swagger-ui.min.css";
+
 //Servidor
 const app = express();
 
@@ -31,7 +33,7 @@ app.use("/user", UserRouter.getRouter());
 app.use("/mockingproducts", MockRouter);
 app.use("/loggerTest", LoggerRouter);
 // swagger documentation endpoint
-app.use("/api/docs", swaggerUi.serve, swaggerUi.setup(swaggerSetup));
+app.use("/api/docs", swaggerUi.serve, swaggerUi.setup(swaggerSetup, { customCssUrl: CSS_URL }));
 
 //Ruta absoluta
 app.use(express.static(__dirname + "/public"));
