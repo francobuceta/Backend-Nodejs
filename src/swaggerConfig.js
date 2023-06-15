@@ -17,7 +17,7 @@ const options = {
             description: "My API Documentation",
         },
     ],
-    apis: [`${__dirname}/docs/**/*.yaml`],
+    apis: [`./docs/**/*.yaml`],
 };
 
 export const swaggerSetup = swaggerJSDoc(options);
