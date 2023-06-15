@@ -11,7 +11,6 @@ import handlebars from "express-handlebars";
 import passport from "passport";
 import "./dao/dbConfig.js";
 import "./passport/passportStrategies.js";
-import jwtRouter from "./routes/jwt.router.js";
 import cors from "cors";
 import swaggerUi from "swagger-ui-express";
 import { swaggerSetup } from './swaggerConfig.js';
@@ -29,7 +28,6 @@ app.use("/api/products", ProductsRouter.getRouter());
 app.use("/api/cart", CartRouter.getRouter());
 app.use("/views", ViewsRouter);
 app.use("/user", UserRouter.getRouter());
-app.use("/jwt", jwtRouter);
 app.use("/mockingproducts", MockRouter);
 app.use("/loggerTest", LoggerRouter);
 // swagger documentation endpoint
