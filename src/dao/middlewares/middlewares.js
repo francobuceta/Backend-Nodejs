@@ -15,7 +15,7 @@ export const isUser = (req, res, next) => {
     if (req.user.role === config.USER_KEY) {
         return next();
     } else {
-        res.status(401).json({ error: "Unauthorized" });
+        res.status(401).json({ error: req.user.role, error2:config.USER_KEY });
     }
 }
 
