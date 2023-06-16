@@ -21,24 +21,35 @@ export const isUser = (req, res, next) => {
 
 export const discountStock = async (req, res, next) => {
     const { cid } = req.params;
-    let noStockProducts = "Los siguientes productos superan el stock disponible:";
+    let noStockProducts = [];
     let amount = 0;
 
     const findCart = await cartService.getCartById(cid);
     
-    findCart[0].products.map(async (elem) => {
+    for (const elem of findCart[0].products) {
         if (elem.quantity <= elem.productId.stock) {
-            amount += elem.productId.price;
+            amount += elem.productId.price * elem.quantity;
             let newStock = elem.productId.stock - elem.quantity;
-            
-            await productService.updateProduct(elem.productId._id, { stock: newStock });
-            await cartService.deleteProductInCart(cid, elem.productId._id);
+
+            try {
+                await productService.updateProduct(elem.productId._id, { stock: newStock });
+                await cartService.deleteProductInCart(cid, elem.productId._id);
+            } catch (error) {
+                console.log(error);
+            }
+
         } else {
-            noStockProducts += ` ${elem.productId.title}`;
+            noStockProducts.push(elem.productId.title);
         }
-    });
+    }
+
     res.locals.data = amount;
-    res.send(noStockProducts);
+    if(noStockProducts.length > 0) {
+        const errorMessage = "Los siguientes productos superan el stock disponible: " + noStockProducts.join(", ");
+        res.send(errorMessage);
+    } else {
+        res.send("Compra realizada correctamente");
+    }
     next();
 }
 
