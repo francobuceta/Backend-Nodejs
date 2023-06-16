@@ -39,14 +39,12 @@ const cookieExtractor = (req) => {
 
 //JWT Strategy
 passport.use("jwt", new JwtStrategy({
-    //jwtFromRequest: ExtractJwt.fromExtractors([cookieExtractor]),
-    jwtFromRequest :ExtractJwt.fromAuthHeaderAsBearerToken(),
+    jwtFromRequest: config.NODE_ENV === "development" ? ExtractJwt.fromExtractors([cookieExtractor]) : ExtractJwt.fromAuthHeaderAsBearerToken(),
     secretOrKey: "secretJWT"
 }, async (jwt_payload, done) => {
     done(null, jwt_payload.user);
 }
 ));
-
 
 //Configuracion Passport
 passport.serializeUser((user, done) => {
