@@ -39,7 +39,8 @@ const cookieExtractor = (req) => {
 
 //JWT Strategy
 passport.use("jwt", new JwtStrategy({
-    jwtFromRequest: config.NODE_ENV === "development" ? ExtractJwt.fromExtractors([cookieExtractor]) : ExtractJwt.fromAuthHeaderAsBearerToken(),
+    //jwtFromRequest: ExtractJwt.fromExtractors([cookieExtractor]), 
+    jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
     secretOrKey: "secretJWT"
 }, async (jwt_payload, done) => {
     done(null, jwt_payload.user);
