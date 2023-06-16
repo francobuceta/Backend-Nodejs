@@ -30,15 +30,14 @@ export default class UserManager {
 
             if (findUser) {
                 return findUser;
-            } else {
-                CustomError.createCustomError({
-                    name: ErrorsName.USER_DATA_INCOMPLETE,
-                    message: ErrorsMessage.USER_DATA_INCOMPLETE,
-                    cause: ErrorsCause.USER_DATA_INCOMPLETE
-                });
             }
+
         } catch (error) {
-            throw error;
+            CustomError.createCustomError({
+                name: ErrorsName.USER_DATA_INCOMPLETE,
+                message: ErrorsMessage.USER_DATA_INCOMPLETE,
+                cause: ErrorsCause.USER_DATA_INCOMPLETE
+            });
         }
     }
 }
