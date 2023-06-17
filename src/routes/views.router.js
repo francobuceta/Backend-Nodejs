@@ -74,9 +74,4 @@ router.get("/profile", passport.authenticate("jwt", {session: false}), (req, res
     }
 });
 
-//JWT
-router.get("/jwtFront", (req, res) => {
-    res.render("jwt");
-});
-
 export default router;
