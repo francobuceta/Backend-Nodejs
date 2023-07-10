@@ -13,7 +13,7 @@ const options = {
     },
     servers: [
         {
-            url: "https://backend-nodejs-self.vercel.app",
+            url: "https://backend-nodejs-self.vercel.app/api/docs",
             description: "My API Documentation",
         },
     ],
