@@ -3,7 +3,7 @@ import productService from "../services/products.services.js";
 class ProductController {
 
     getPagination = async (req, res) => {
-        const { page = 1, limit = 3, category } = req.query;
+        const { page = 1, limit = 12, category } = req.query;
         const getProducts = await productService.getPagination(category, page, limit);
     
         const prevLink = getProducts.hasPrevPage
