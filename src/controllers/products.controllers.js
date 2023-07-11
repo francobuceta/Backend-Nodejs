@@ -8,11 +8,11 @@ class ProductController {
         const getProducts = await productService.getPagination(category, page, limit);
     
         const prevLink = getProducts.hasPrevPage
-            ? `${config.DEPLOY_URL}/api/products/?page=${getProducts.prevPage}`
+            ? `${config.PORT}/api/products/?page=${getProducts.prevPage}`
             : null;
     
         const nextLink = getProducts.hasNextPage
-            ? `${config.DEPLOY_URL}/api/products/?page=${getProducts.nextPage}`
+            ? `${config.PORT}/api/products/?page=${getProducts.nextPage}`
             : null;
     
         res.json({
