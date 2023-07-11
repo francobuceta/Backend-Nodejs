@@ -1,4 +1,5 @@
 import productService from "../services/products.services.js";
+import config from "../config/config.js";
 
 class ProductController {
 
@@ -7,11 +8,11 @@ class ProductController {
         const getProducts = await productService.getPagination(category, page, limit);
     
         const prevLink = getProducts.hasPrevPage
-            ? `http://localhost:8080/api/products/pagination?page=${getProducts.prevPage}`
+            ? `${config.DEPLOY_URL}/api/products/?page=${getProducts.prevPage}`
             : null;
     
         const nextLink = getProducts.hasNextPage
-            ? `http://localhost:8080/api/products/pagination?page=${getProducts.nextPage}`
+            ? `${config.DEPLOY_URL}/api/products/?page=${getProducts.nextPage}`
             : null;
     
         res.json({
