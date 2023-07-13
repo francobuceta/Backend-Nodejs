@@ -7,7 +7,7 @@ class UserRouter {
         constructor() {
                 this.router = Router();
                 this.router.post("/register", userController.createUser);
-                this.router.post("/login", corsConfig, userController.loginUser);
+                this.router.post("/login", userController.loginUser);
                 this.router.get("/login/current", userController.loginCurrent);
                 this.router.get("/logout", userController.logoutUser);
                 this.router.get("/registroGithub", passport.authenticate("github", { scope: ["user:email"] }));
