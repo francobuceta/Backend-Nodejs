@@ -23,9 +23,7 @@ const app = express();
 //Configuracion inicial express
 app.use(express.json());
 app.use(express.urlencoded({ extended:true }));
-app.use(cors({
-    origin: "http://localhost:3000"
-}));
+app.use(cors());
 
 //Redireccionamiento a los archivos
 app.use("/api/products", ProductsRouter.getRouter());
