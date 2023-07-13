@@ -56,7 +56,7 @@ class UserController {
         const user = req.user;
 
         const token = generateToken(user);
-        return res.cookie("token", token, { httpOnly: true }).redirect("/views/products");
+        return res.cookie("token", token, { httpOnly: true }).json({ messsage:"Ingreso exitoso", token });
     }
 
     loginCurrent = async (req, res) => {
