@@ -1,7 +1,6 @@
 import { Router } from "express";
 import userController from "../controllers/user.controllers.js";
 import passport from "passport";
-import { corsConfig } from "../dao/middlewares/middlewares.js";
 
 class UserRouter {
         constructor() {
