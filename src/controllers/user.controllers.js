@@ -24,9 +24,9 @@ class UserController {
                     subject: "Usuario Nuevo",
                     text: `Gracias por registrarte en nuestro sitio ${newUser.firstName}`
                 });
-                res.redirect("/views/login");
+                res.json({ message:"Usuario creado con éxito" });
             } else {
-                res.redirect("/views/errorRegister");
+                res.json({ message:"Error al registrar usuario" });
             }
         } catch (error) {
             next(error);
@@ -39,9 +39,9 @@ class UserController {
 
             if (newUser) {
                 const token = generateToken(newUser);
-                return res.cookie("token", token, { httpOnly: true }).json({messsage:"Ingreso exitoso", token});
+                return res.cookie("token", token, { httpOnly: true }).json({ messsage:"Ingreso exitoso", token });
             } else {
-                res.json({messsage:"Ingreso fallido"});
+                res.json({ messsage:"Ingreso fallido" });
             }
         } catch (error) {
             next(error);
