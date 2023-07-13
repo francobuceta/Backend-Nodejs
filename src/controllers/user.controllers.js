@@ -39,10 +39,9 @@ class UserController {
 
             if (newUser) {
                 const token = generateToken(newUser);
-                return res.cookie("token", token, { httpOnly: true }).json({messsage:"Ingreso exitoso", token})/* .redirect("/views/products") */;
+                return res.cookie("token", token, { httpOnly: true }).json({messsage:"Ingreso exitoso", token});
             } else {
                 res.json({messsage:"Ingreso fallido"});
-                //res.redirect("/views/errorLogin");
             }
         } catch (error) {
             next(error);
