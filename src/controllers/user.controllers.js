@@ -60,7 +60,13 @@ class UserController {
     }
 
     loginCurrent = async (req, res) => {
-        res.redirect("/views/profile");
+        if (req.user) {
+            res.status(200).json({
+                success: true,
+                message: "successfull",
+                user: req.user
+            });
+        };
     }
 }
 
