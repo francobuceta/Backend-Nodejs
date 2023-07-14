@@ -56,7 +56,7 @@ class UserController {
         const user = req.user;
 
         const token = generateToken(user);
-        return res.cookie("token", token).json({ messsage:"Ingreso exitoso", token });
+        return res.cookie("token", token).redirect("http://localhost:3000");
     }
 
     loginCurrent = async (req, res) => {
