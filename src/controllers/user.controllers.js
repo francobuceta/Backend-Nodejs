@@ -60,12 +60,14 @@ class UserController {
     }
 
     loginCurrent = async (req, res) => {
-        console.log(req.cookies);
-        if (req) {
+        if (req.headers.cookie) {
+            const cookieString = req.headers.cookie;
+            const token = cookieString.split("=")[1].split(";")[0];
+
             res.status(200).json({
                 success: true,
                 message: "successfull",
-                /* user: req */
+                user: token
             });
         };
     }
