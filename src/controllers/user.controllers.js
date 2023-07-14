@@ -69,6 +69,8 @@ class UserController {
                 message: "successfull",
                 user: token
             });
+        } else {
+            res.json({message:"no habia cookies"});
         };
     }
 }
