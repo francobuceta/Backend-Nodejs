@@ -56,15 +56,16 @@ class UserController {
         const user = req.user;
 
         const token = generateToken(user);
-        return res.cookie("token", token, { httpOnly: true }).json({ messsage:"Ingreso exitoso", token });
+        return res.cookie("token", token).json({ messsage:"Ingreso exitoso", token });
     }
 
     loginCurrent = async (req, res) => {
-        if (req.user) {
+        console.log(req.cookies);
+        if (req) {
             res.status(200).json({
                 success: true,
                 message: "successfull",
-                user: req.user
+                /* user: req */
             });
         };
     }
