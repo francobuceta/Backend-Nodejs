@@ -77,3 +77,11 @@ export const sendEmail = async (req, res, next) => {
     }
     next();
 }
+
+export const handleCors = (req, res, next) => {
+    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
+    res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+    res.setHeader('Access-Control-Allow-Credentials', 'true'); // Establecer 'true' para permitir las solicitudes con credenciales
+    next();
+};
