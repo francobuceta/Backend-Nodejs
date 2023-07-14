@@ -10,7 +10,12 @@ class UserRouter {
                 this.router.get("/login/current", userController.loginCurrent);
                 this.router.get("/logout", userController.logoutUser);
                 this.router.get("/registroGithub", passport.authenticate("github", { scope: ["user:email"] }));
-                this.router.get("/github", passport.authenticate("github", { session: false }), userController.loginGithub);
+                this.router.get("/github", passport.authenticate("github", { 
+                        session: false,
+                        successRedirect : 'http://localhost:3000',
+                        failureRedirect : 'http://localhost:3000/auth',
+                        failureFlash : true
+                }), userController.loginGithub);
         }
 
         getRouter() {
