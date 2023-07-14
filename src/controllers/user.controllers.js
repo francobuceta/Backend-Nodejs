@@ -60,7 +60,7 @@ class UserController {
     }
 
     loginCurrent = async (req, res) => {
-        res.json(req.body);
+        return res.json(req.body);
         /* if (req.headers.cookie) {
             const cookieString = req.headers.cookie;
             const token = cookieString.split("=")[1].split(";")[0];
