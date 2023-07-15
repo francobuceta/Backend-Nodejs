@@ -55,13 +55,14 @@ class UserController {
     loginGithub = async (req, res) => {
         const user = req.user;
         const token = generateToken(user);
+        const tokenString = JSON.stringify(token);
 
         res.status(200).send(`<!DOCTYPE html>
             <html lang="en">
                 <body>
                 </body>
                 <script>
-                    window.opener.postMessage(${token}, 'http://localhost:3000')
+                    window.opener.postMessage(${tokenString}, 'http://localhost:3000')
                 </script>
             </html>`);
     }
