@@ -39,7 +39,7 @@ class UserController {
 
             if (newUser) {
                 const token = generateToken(newUser);
-                return res.cookie("token", token).json({ messsage:"Ingreso exitoso", token });
+                return res.cookie("token", token, {httpOnly:false}).json({ messsage:"Ingreso exitoso", token });
             } else {
                 res.json({ messsage:"Ingreso fallido" });
             }
@@ -63,7 +63,7 @@ class UserController {
         const user = req.user;
 
         const token = generateToken(user);
-        return res.cookie("token", token).redirect("http://localhost:3000");
+        return res.cookie("token", token, {httpOnly:false}).redirect("http://localhost:3000");
     }
 
     loginCurrent = async (req, res) => {
