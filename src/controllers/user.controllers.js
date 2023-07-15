@@ -53,10 +53,15 @@ class UserController {
     }
 
     loginGithub = async (req, res) => {
-        const user = req.user;
-
-        const token = generateToken(user);
-        return res.cookie("token", token).redirect("http://localhost:3000");
+        const user = JSON.stringify(req.user)
+        res.status(200).send(`<!DOCTYPE html>
+            <html lang="en">
+                <body>
+                </body>
+                <script>
+                    window.opener.postMessage(${user}, 'http://localhost:3000')
+                </script>
+            </html>`);
     }
 
     loginGoogle = async (req, res) => {
@@ -67,7 +72,8 @@ class UserController {
     }
 
     loginCurrent = async (req, res) => {
-        if (req.headers.cookie) {
+        console.log(req.cookies, req.user);
+        /* if (req.headers.cookie) {
             const cookieString = req.headers.cookie;
             const token = cookieString.split("=")[1].split(";")[0];
 
@@ -78,7 +84,7 @@ class UserController {
             });
         } else {
             res.json({message:"no habia cookies"});
-        };
+        }; */
     }
 }
 
