@@ -64,30 +64,24 @@ class UserController {
                 <script>
                     window.opener.postMessage(${tokenString}, 'http://localhost:3000')
                 </script>
-            </html>`);
+            </html>`
+        );
     }
 
     loginGoogle = async (req, res) => {
         const user = req.user;
-
         const token = generateToken(user);
-        return res.cookie("token", token, {httpOnly:false}).redirect("http://localhost:3000");
-    }
+        const tokenString = JSON.stringify(token);
 
-    loginCurrent = async (req, res) => {
-        console.log(req.cookies, req.user);
-        /* if (req.headers.cookie) {
-            const cookieString = req.headers.cookie;
-            const token = cookieString.split("=")[1].split(";")[0];
-
-            res.status(200).json({
-                success: true,
-                message: "successfull",
-                user: token
-            });
-        } else {
-            res.json({message:"no habia cookies"});
-        }; */
+        res.status(200).send(`<!DOCTYPE html>
+            <html lang="en">
+                <body>
+                </body>
+                <script>
+                    window.opener.postMessage(${tokenString}, 'http://localhost:3000')
+                </script>
+            </html>`
+        );
     }
 }
 
