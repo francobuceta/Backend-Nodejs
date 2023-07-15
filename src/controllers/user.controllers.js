@@ -61,7 +61,7 @@ class UserController {
                 <body>
                 </body>
                 <script>
-                    window.opener.postMessage(${user}, 'http://localhost:3000')
+                    window.opener.postMessage(${token}, 'http://localhost:3000')
                 </script>
             </html>`);
     }
