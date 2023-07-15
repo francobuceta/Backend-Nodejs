@@ -17,6 +17,8 @@ class UserRouter {
                         failureRedirect : 'http://localhost:3000/auth',
                         failureFlash : true
                 }), userController.loginGithub);
+                this.router.get("/registroGoogle", passport.authenticate("google", { scope: ["profile","email"] }));
+                this.router.get("/google", passport.authenticate("google", {session: false}), userController.loginGoogle);
         }
 
         getRouter() {
