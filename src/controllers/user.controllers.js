@@ -53,7 +53,9 @@ class UserController {
     }
 
     loginGithub = async (req, res) => {
-        const user = JSON.stringify(req.user)
+        const user = JSON.stringify(req.user);
+        const token = generateToken(user);
+
         res.status(200).send(`<!DOCTYPE html>
             <html lang="en">
                 <body>
