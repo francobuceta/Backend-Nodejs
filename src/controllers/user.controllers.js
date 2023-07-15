@@ -59,6 +59,13 @@ class UserController {
         return res.cookie("token", token).redirect("http://localhost:3000");
     }
 
+    loginGoogle = async (req, res) => {
+        const user = req.user;
+
+        const token = generateToken(user);
+        return res.cookie("token", token).redirect("http://localhost:3000");
+    }
+
     loginCurrent = async (req, res) => {
         return res.status(200).json(req.body);
         /* if (req.headers.cookie) {
