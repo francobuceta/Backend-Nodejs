@@ -67,8 +67,7 @@ class UserController {
     }
 
     loginCurrent = async (req, res) => {
-        return res.status(200).json(req.body);
-        /* if (req.headers.cookie) {
+        if (req.headers.cookie) {
             const cookieString = req.headers.cookie;
             const token = cookieString.split("=")[1].split(";")[0];
 
@@ -79,7 +78,7 @@ class UserController {
             });
         } else {
             res.json({message:"no habia cookies"});
-        }; */
+        };
     }
 }
 
