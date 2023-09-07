@@ -39,7 +39,7 @@ class UserController {
 
             if (newUser) {
                 const token = generateToken(newUser);
-                return res.cookie("token", token, {httpOnly:false}).json({ messsage:"Ingreso exitoso", token });
+                return res.cookie("token", token, {httpOnly:false}).json({ message:"Ingreso exitoso", token });
             } else {
                 res.json({ message:"Ingreso fallido" });
             }
