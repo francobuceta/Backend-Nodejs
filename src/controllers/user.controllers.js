@@ -49,7 +49,11 @@ class UserController {
     }
 
     logoutUser = async (req, res) => {
-        res.clearCookie("token").redirect("/views/login");
+        try {
+            res.clearCookie("token").json({ message: "Logout exitoso" });
+        } catch (error) {
+            res.json({ message: "Logout fallido" });
+        }
     }
 
     loginGithub = async (req, res) => {
