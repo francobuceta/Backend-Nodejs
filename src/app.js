@@ -5,6 +5,7 @@ import ViewsRouter from "./routes/views.router.js";
 import UserRouter from "./routes/user.router.js";
 import MockRouter from "./routes/mocking.router.js";
 import LoggerRouter from "./routes/logger.router.js";
+import PaymentRouter from "./routes/payment.router.js";
 import { errorMiddleware } from './dao/middlewares/middlewares.js';
 import { __dirname } from "./utils.js"
 import handlebars from "express-handlebars";
@@ -31,8 +32,9 @@ app.use(cors({
 //Redireccionamiento a los archivos
 app.use("/api/products", ProductsRouter.getRouter());
 app.use("/api/cart", CartRouter.getRouter());
-app.use("/views", ViewsRouter);
 app.use("/user", UserRouter.getRouter());
+app.use("/payment", PaymentRouter.getRouter());
+app.use("/views", ViewsRouter);
 app.use("/mockingproducts", MockRouter);
 app.use("/loggerTest", LoggerRouter);
 // swagger documentation endpoint
