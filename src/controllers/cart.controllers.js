@@ -21,8 +21,9 @@ class CartController {
 
     addProductToCart = async (req, res) => {
         const { cid, pid } = req.params;
+        const { qty } = req.query;
 
-        const newCart = await cartService.addProductToCart(cid, pid);
+        const newCart = await cartService.addProductToCart(cid, pid, +qty);
 
         if (newCart) {
             res.json({ message: "Producto agregado con éxito", newCart });

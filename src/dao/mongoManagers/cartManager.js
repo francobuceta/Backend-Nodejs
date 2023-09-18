@@ -19,7 +19,7 @@ export default class CartManager {
         }
     }
 
-    async addProductToCart(cid, pid) {
+    async addProductToCart(cid, pid, qty) {
         try {
             const cart = await cartModel.findById(cid);
             
@@ -33,7 +33,7 @@ export default class CartManager {
                     if (productIndex !== -1) {
                         let updateQ = await cartModel.updateOne(
                             { _id: cid, "products.productId": pid },
-                            { $inc: { "products.$.quantity": 1 } }
+                            { $inc: { "products.$.quantity": qty } }
                         );
                         return updateQ;
                     } else {
@@ -43,7 +43,7 @@ export default class CartManager {
                                 $push: {
                                     products: {
                                         productId: pid,
-                                        quantity: 1,
+                                        quantity: qty,
                                     },
                                 },
                             }
@@ -61,7 +61,7 @@ export default class CartManager {
                                 $push: {
                                     products: {
                                         productId: pid,
-                                        quantity: 1,
+                                        quantity: qty,
                                     },
                                 },
                             }

@@ -17,8 +17,8 @@ class CartService {
         return newCart;
     }
     
-    addProductToCart = async (cid, pid) => {
-        const cart = await this.dao.addProductToCart(cid, pid);
+    addProductToCart = async (cid, pid, qty) => {
+        const cart = await this.dao.addProductToCart(cid, pid, qty);
         return cart;
     }
     
