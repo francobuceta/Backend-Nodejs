@@ -16,5 +16,6 @@ export default {
     ADMIN_KEY: process.env.ADMIN_KEY,
     USER_KEY: process.env.USER_KEY,
     GMAIL_USER: process.env.GMAIL_USER,
-    GMAIL_PASSWORD: process.env.GMAIL_PASSWORD
+    GMAIL_PASSWORD: process.env.GMAIL_PASSWORD,
+    STRIPE_SECRET_KEY: process.env.STRIPE_SECRET_KEY
 }
