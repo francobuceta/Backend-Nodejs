@@ -65,8 +65,7 @@ class CartController {
         const { cid } = req.params;
         const cart = await cartService.emptyCart(cid);
 
-        cart ? res.json({ message: "Carrito vaciado con éxito", cart })
-            : res.json({ message: "Error al vaciar el carrito", cart })
+        res.json({ message: "Carrito vaciado con éxito", cart });
     }
 
     showCart = async (req, res) => {
