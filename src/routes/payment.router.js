@@ -7,7 +7,7 @@ import passport from "passport";
 class PaymentRouter {
     constructor() {
         this.router = Router();
-        this.router.post("/payment-intents", passport.authenticate("jwt", { session: false }), /* discountStock, */ paymentController.createPayment, sendEmail, ticketController.createTicket);
+        this.router.post("/:cid/payment-intents", passport.authenticate("jwt", { session: false }), discountStock, paymentController.createPayment, sendEmail, ticketController.createTicket);
     }
 
     getRouter() {
