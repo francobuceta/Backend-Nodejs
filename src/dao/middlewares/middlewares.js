@@ -48,9 +48,8 @@ export const discountStock = async (req, res, next) => {
         const errorMessage = "Los siguientes productos superan el stock disponible: " + noStockProducts.join(", ");
         res.send(errorMessage);
     } else {
-        res.send("Compra realizada correctamente");
+        next();
     }
-    next();
 }
 
 //Middleware para manejo de errores
