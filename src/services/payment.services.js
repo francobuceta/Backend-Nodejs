@@ -1,28 +1,22 @@
-import ProductManager from "../dao/mongoManagers/productManager.js";
 import Stripe from 'stripe';
 import config from "../config/config.js"
 
-const productManager = new ProductManager();
 const stripe = new Stripe(config.STRIPE_SECRET_KEY);
 
 class PaymentService {
-    constructor(dao) {
-        this.dao = dao;
-    }
-
-    createPaymentStripe = async (id) => {
+    createPaymentStripe = async (purchaseData) => {
         try {
-            const findProduct = await this.dao.getProductById(id);
-            if (!findProduct) {
-                throw new Error("Producto no encontrado");
+            if (!purchaseData) {
+                throw new Error("Productos no encontrados");
             }
             
             const stripeInfo = {
-                amount: findProduct.price,
+                amount: purchaseData.amount,
                 currency: "ars",
-                /* metadata: {
-                    Aqui van otros datos como usuario, nombrel del producto, etc
-                } */
+                metadata: {
+                    user: purchaseData.user,
+                    orderDetails: purchaseData.products
+                }
             }
 
             const response = await stripe.paymentIntents.create(stripeInfo);
@@ -34,4 +28,4 @@ class PaymentService {
     }
 }
 
-export default new PaymentService(productManager);
+export default new PaymentService();

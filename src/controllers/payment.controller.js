@@ -2,14 +2,13 @@ import PaymentService from "../services/payment.services.js";
 
 class PaymentController {
     createPayment = async (req, res, next) => {
-        console.log("hola");
-        const { id } = req.query;
+        const purchaseData = req.headers['Purchase-Info'];
         try {
-            const response = await PaymentService.createPaymentStripe(id); //El profe pasa el id a numero
+            const response = await PaymentService.createPaymentStripe(JSON.parse(purchaseData));
             res.json({ message: "Pago realizado con éxito", payload: response });
             next();
         } catch (error) {
-            next(error);
+            throw error;
         }
     }
 }
