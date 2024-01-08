@@ -20,7 +20,6 @@ class PaymentService {
             }
 
             const response = await stripe.paymentIntents.create(stripeInfo);
-            console.log(response);
             return response;
         } catch (error) {
             throw error;
