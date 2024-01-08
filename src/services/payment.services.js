@@ -19,7 +19,6 @@ class PaymentService {
                 }
             }
 
-            res.locals.data = purchaseData.amount; //Guardamos el total en locals.data para que lo reciba el ticket controller.
             const response = await stripe.paymentIntents.create(stripeInfo);
             return response;
         } catch (error) {
