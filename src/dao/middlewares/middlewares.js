@@ -63,10 +63,10 @@ export const sendEmail = async (req, res, next) => {
     const { email } = req.user;
     try {
         await transporter.sendMail({
-            from: "E-commerce",
+            from: '"Cyber Cube" <cybercube_soporte@gmail.com>',
             to: email,
-            subject: "Nueva Compra",
-            text: "Realizaste una nueva compra"
+            subject: "Realizaste una nueva compra",
+            text: "Realizaste una nueva compraaa"
         });
     } catch (error) {
         console.log(error);
