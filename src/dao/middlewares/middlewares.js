@@ -91,8 +91,7 @@ export const sendEmail = async (req, res, next) => {
                 font-size: 18px;
                 margin-bottom: 20px;
             }
-            .producto {
-                border: 1px solid #e0e0e0;
+            .product {
                 padding: 10px;
                 margin-bottom: 10px;
                 display: flex;
@@ -112,22 +111,25 @@ export const sendEmail = async (req, res, next) => {
             </div>
             
             <div class="text">
-                Te pasamos el detalle de tu nueva compra. <br> Por favor, responde este mail para indicarnos si retiras
-                por nuestro local o te lo llevamos a tu domicilio. ¡Muchas gracias!
+                Muchas gracias por realizar una compra en nuestro sitio web.
             </div>
-    `
-
-    purchaseData.products.forEach((product) => {
-        cuerpoCorreo += `
-            <div class="producto">
-                <h3>${product.title}</h3>
-                <p>Precio: $${product.price}</p>
+            <div class="text">
+                Por favor responde este mail para indicarnos si retiras
+                por nuestro local o te llevamos a tu domicilio los siguientes productos:
             </div>
+            <div class="product">
+                <h3>${purchaseData.products}</h3>
             </div>
-        </body>
-    </html>
-        `;
-    });
+            <div class="text">
+                El total de tu compra es de:
+            </div>
+            <div class="product">
+                <h3>$${purchaseData.amount}</h3>
+            </div>
+        </div>
+    </body>
+</html>
+    `;
 
     try {
         await transporter.sendMail({
