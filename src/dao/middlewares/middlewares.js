@@ -120,8 +120,8 @@ export const sendEmail = async (req, res, next) => {
     purchaseData.products.forEach((product) => {
         cuerpoCorreo += `
             <div class="producto">
-                <h3>${product.nombre}</h3>
-                <p>Precio: ${product.precio}</p>
+                <h3>${product.title}</h3>
+                <p>Precio: $${product.price}</p>
             </div>
             </div>
         </body>
