@@ -96,6 +96,9 @@ export const sendEmail = async (req, res, next) => {
                 margin-bottom: 10px;
                 display: flex;
             }
+            .price {
+                font-size: 24px;
+            }
         </style>
     </head>
     <body>
@@ -123,7 +126,7 @@ export const sendEmail = async (req, res, next) => {
             <div class="text">
                 El total de tu compra es de:
             </div>
-            <div class="product">
+            <div class="product price">
                 <h3>$${purchaseData.amount}</h3>
             </div>
         </div>
