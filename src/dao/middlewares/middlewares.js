@@ -60,13 +60,81 @@ export const errorMiddleware = (error, req, res, next) => {
 
 //Envío de email con nodemailer
 export const sendEmail = async (req, res, next) => {
-    const { email } = req.user;
+    const { email, firstName } = req.user;
+    const purchaseData = req.body.purchaseInfo;
+
+    let cuerpoCorreo = `<!DOCTYPE html>
+    <html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <title>Cyber Cube</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                text-align: center;
+            }
+            .container {
+                max-width: 600px;
+                margin: 50px auto;
+                padding: 20px;
+            }
+            .logo {
+                text-align: center;
+                margin-bottom: 20px;
+            }
+            .title {
+                font-size: 24px;
+                margin-bottom: 20px;
+                font-weight: bold;
+            }
+            .text {
+                font-size: 18px;
+                margin-bottom: 20px;
+            }
+            .producto {
+                border: 1px solid #e0e0e0;
+                padding: 10px;
+                margin-bottom: 10px;
+                display: flex;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <div class="logo">
+                <img src="https://res.cloudinary.com/dzm5lgpyv/image/upload/v1704984217/cyber%20cube%20backend%20ecommerce/cybercube_logo_ivjjnt.png" 
+                    alt="Logo de la empresa" width="150" height="auto"
+                >
+            </div>
+            
+            <div class="title">
+                ¡Hola ${firstName}!
+            </div>
+            
+            <div class="text">
+                Te pasamos el detalle de tu nueva compra. <br> Por favor, responde este mail para indicarnos si retiras
+                por nuestro local o te lo llevamos a tu domicilio. ¡Muchas gracias!
+            </div>
+    `
+
+    purchaseData.products.forEach((product) => {
+        cuerpoCorreo += `
+            <div class="producto">
+                <h3>${product.nombre}</h3>
+                <p>Precio: ${product.precio}</p>
+            </div>
+            </div>
+        </body>
+    </html>
+        `;
+    });
+
     try {
         await transporter.sendMail({
             from: '"Cyber Cube" <cybercube_soporte@gmail.com>',
             to: email,
             subject: "Realizaste una nueva compra",
-            text: "Realizaste una nueva compraaa"
+            html: cuerpoCorreo
         });
     } catch (error) {
         console.log(error);
