@@ -66,7 +66,7 @@ class UserController {
                 <body>
                 </body>
                 <script>
-                    window.opener.postMessage(${tokenString}, 'http://localhost:3000')
+                    window.opener.postMessage(${tokenString}, 'https://ecommerce-next-js-ebon.vercel.app')
                 </script>
             </html>`
         );
@@ -82,7 +82,7 @@ class UserController {
                 <body>
                 </body>
                 <script>
-                    window.opener.postMessage(${tokenString}, 'http://localhost:3000')
+                    window.opener.postMessage(${tokenString}, 'https://ecommerce-next-js-ebon.vercel.app')
                 </script>
             </html>`
         );
