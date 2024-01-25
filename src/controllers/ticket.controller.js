@@ -7,7 +7,7 @@ class TicketController {
 
         try {
             const newTicket = await ticketService.createTicket(email, purchaseData.amount);
-            return newTicket;
+            res.json({ message: "Ticket creado con éxito", ticket: newTicket });
         } catch (error) {
             console.log(error);
         }
