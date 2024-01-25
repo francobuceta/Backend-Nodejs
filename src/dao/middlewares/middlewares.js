@@ -31,6 +31,11 @@ export const discountStock = async (req, res, next) => {
 
             try {
                 await productService.updateProduct(elem.productId._id, { stock: newStock });
+            } catch (error) {
+                console.log(error);
+            }
+
+            try {
                 await cartService.deleteProductInCart(cid, elem.productId._id);
             } catch (error) {
                 console.log(error);
