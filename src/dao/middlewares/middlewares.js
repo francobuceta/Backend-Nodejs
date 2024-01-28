@@ -103,6 +103,7 @@ export const sendEmail = async (req, res, next) => {
             }
             .price {
                 font-size: 24px;
+                text-align: center;
             }
         </style>
     </head>
