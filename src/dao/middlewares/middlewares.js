@@ -132,7 +132,7 @@ export const sendEmail = async (req, res, next) => {
                 El total de tu compra es de:
             </div>
             <div class="product price">
-                <h3>$${purchaseData.amount}</h3>
+                <h3>$${purchaseData.amount / 100}</h3>
             </div>
         </div>
     </body>
