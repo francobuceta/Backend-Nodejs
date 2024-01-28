@@ -28,9 +28,10 @@ export const discountStock = async (req, res, next) => {
     for (const elem of findCart[0].products) {
         if (elem.quantity <= elem.productId.stock) {
             let newStock = elem.productId.stock - elem.quantity;
-
+            let response;
             try {
-                await productService.updateProduct(elem.productId._id, { stock: newStock });
+                response = await productService.updateProduct(elem.productId._id, { stock: newStock });
+                console.log(response);
             } catch (error) {
                 console.log(error);
             }
@@ -50,7 +51,8 @@ export const discountStock = async (req, res, next) => {
         const errorMessage = "Los siguientes productos superan el stock disponible: " + noStockProducts.join(", ");
         res.send(errorMessage);
     } else {
-        next();
+        res.json({response});
+        //next();
     }
 }
 
