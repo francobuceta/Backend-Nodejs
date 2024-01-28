@@ -24,11 +24,12 @@ export const discountStock = async (req, res, next) => {
     let noStockProducts = [];
 
     const findCart = await cartService.getCartById(cid);
+    let response;
     
     for (const elem of findCart[0].products) {
         if (elem.quantity <= elem.productId.stock) {
             let newStock = elem.productId.stock - elem.quantity;
-            let response;
+            
             try {
                 response = await productService.updateProduct(elem.productId._id, { stock: newStock });
                 console.log(response);
