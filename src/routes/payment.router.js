@@ -8,7 +8,7 @@ class PaymentRouter {
     constructor() {
         this.router = Router();
         this.router.post("/:cid/payment-intents", passport.authenticate("jwt", { session: false }), paymentController.createPayment);
-        this.router.post("/:cid/payment-confirmation", passport.authenticate("jwt", { session: false }), discountStock/* , sendEmail, ticketController.createTicket */);
+        this.router.post("/:cid/payment-confirmation", passport.authenticate("jwt", { session: false }), discountStock, sendEmail, ticketController.createTicket);
     }
 
     getRouter() {
