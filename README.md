@@ -30,5 +30,5 @@
 ![JWT](https://img.shields.io/badge/JWT-black?style=for-the-badge&logo=json-web-tokens&logoColor=white)
 ![Bcript](https://img.shields.io/badge/-Bcript-80247B?style=for-the-badge&logoColor=white)
 ![Passport](https://img.shields.io/badge/-Passport-34E27A?style=for-the-badge&logo=passport&logoColor=white)
-![Swiper](https://img.shields.io/badge/-Swiper-6332F6?style=for-the-badge&logo=swiper&logoColor=white)
+![Stripe](https://img.shields.io/badge/-Stripe-008CDD?style=for-the-badge&logo=stripe&logoColor=white)
 ![Nodemailer](https://img.shields.io/badge/-Nodemailer-30B980?style=for-the-badge&logo=minutemailer&logoColor=white)
