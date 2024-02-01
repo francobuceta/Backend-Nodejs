@@ -15,8 +15,8 @@
 ### ⚡ Project links:
 
 <h3>
-  <a href="https://github.com/francobuceta/Backend-Nodejs"> 
-    <img src="https://img.shields.io/badge/-Backend-606060?style=for-the-badge&logo=nodedotjs&logoColor=white"/>
+  <a href="https://github.com/francobuceta/Ecommerce-Next.js"> 
+    <img src="https://img.shields.io/badge/-Frontend-000000?style=for-the-badge&logo=nextdotjs&logoColor=white"/>
   </a> 
 </h3>
 
