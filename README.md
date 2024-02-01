@@ -32,3 +32,4 @@
 ![Passport](https://img.shields.io/badge/-Passport-34E27A?style=for-the-badge&logo=passport&logoColor=white)
 ![Stripe](https://img.shields.io/badge/-Stripe-008CDD?style=for-the-badge&logo=stripe&logoColor=white)
 ![Nodemailer](https://img.shields.io/badge/-Nodemailer-30B980?style=for-the-badge&logo=minutemailer&logoColor=white)
+![Swagger](https://img.shields.io/badge/-Swagger-85EA2D?logo=swagger&logoColor=black&style=for-the-badge)
