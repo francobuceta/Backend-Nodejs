@@ -24,9 +24,9 @@
 
 #### 🛠️ Tech Stack:
 
-![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=JavaScript&logoColor=black) 
-![Next](https://img.shields.io/badge/-Next-000000?style=for-the-badge&logo=nextdotjs&logoColor=white) 
-![Tailwind](https://img.shields.io/badge/-Tailwind-06B6D4?logo=tailwind-css&logoColor=white&style=for-the-badge)
+![Nodejs](https://img.shields.io/badge/-Node%20js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white) 
+![Express](https://img.shields.io/badge/-Express-000000?style=for-the-badge&logo=express&logoColor=white) 
+![Mongo DB](https://img.shields.io/badge/-Mongo%20DB-47A248?style=for-the-badge&logo=mongodb&logoColor=white)
 ![Daisy UI](https://img.shields.io/badge/-Daisy%20UI-5A0EF8?style=for-the-badge&logo=#5A0EF8&logoColor=white)
 ![Redux Toolkit](https://img.shields.io/badge/Redux%20Toolkit-764ABC?style=for-the-badge&logo=Redux&logoColor=white)
 ![Swiper](https://img.shields.io/badge/-Swiper-6332F6?style=for-the-badge&logo=swiper&logoColor=white)
