@@ -6,7 +6,7 @@
 
 <h3>
   <a href="https://www.loom.com/share/9b59a0e70e814cfe8116e348888ab1c2?sid=05b36b80-17c5-4639-98b0-3ef22b2204a8"> 
-    <img src="https://img.shields.io/badge/Video Preview%20-%231A237E.svg?&style=for-the-badge&logo=Canva&logoColor=white"/>
+    <img src="https://img.shields.io/badge/Video Preview%20-625DF5.svg?&style=for-the-badge&logo=loom&logoColor=white"/>
   </a>
 </h3>
 
