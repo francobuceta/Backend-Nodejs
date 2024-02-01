@@ -1,8 +1,8 @@
 <img align="center" src="https://res.cloudinary.com/dzm5lgpyv/image/upload/v1706745355/cyber%20cube%20backend%20ecommerce/proyecto-cyberCube_awweds.png">
 
-<h3>👉🏻 Proyecto full-stack "Cyber Cube", donde se pueden realizar compras online. Este proyecto es un ecommerce desarrollado con Next.js para el frontend y un backend en Node.js. Proporciona una plataforma para la compra de productos tecnológicos, ofreciendo una experiencia de usuario intuitiva y eficiente.</h3>
+<h3>👉🏻 Proyecto full-stack donde se pueden realizar compras online. Este sitio web es un ecommerce desarrollado con Next.js para el frontend y un backend en Node.js. Proporciona una plataforma para la compra de productos tecnológicos, ofreciendo una experiencia de usuario intuitiva y eficiente.</h3>
 
-<h3>👉🏻 <b>Deploy: <a href="https://ecommerce-next-js-ebon.vercel.app/">Mercado Libre</a></b></h3>
+<h3>👉🏻 <b>Deploy: <a href="https://ecommerce-next-js-ebon.vercel.app/">Cyber Cube</a></b></h3>
 
 <h3>
   <a href="https://www.loom.com/share/9b59a0e70e814cfe8116e348888ab1c2?sid=05b36b80-17c5-4639-98b0-3ef22b2204a8"> 
