@@ -13,7 +13,7 @@
 
 <hr/>
 
-### ⚡ Project links:
+### 🔗 Project links:
 
 <h3>
   <a href="https://github.com/francobuceta/Ecommerce-Next.js"> 
@@ -22,6 +22,25 @@
 </h3>
 
 <hr/>
+
+### ⚡ Main Features:
+
+* <b>Registro Seguro de Usuarios:</b> Registro e inicio de sesión utilizando cuenta de Google, GitHub o completando un formulario estándar. Generación de token JWT para autenticaciones subsiguientes. Validación y encriptación de contraseñas.
+
+* <b>CRUD:</b> Funcionamiento tradicional de una API donde se puede crear, leer, actualizar y borrar productos y carritos.
+
+* <b>Carrito de Compras:</b> Agregar productos a un carrito personal para cada usuario.
+
+* <b>Filtrado por Categoría:</b> Explorar productos almacenados en la base de datos filtrando por categorías y realizando paginación.
+
+* <b>Proceso de Compra Seguro:</b> Realizar compras seguras utilizando Stripe.
+
+* <b>Creación de ticket de compra:</b> Generar ticket con el detalle de la compra y almacenarlo en base de datos.
+
+* <b>Notificaciones por Email:</b> Recibir notificaciones por correo electrónico al registrarse y después de realizar una compra.
+
+<hr/>
+
 
 #### 🛠️ Tech Stack:
 
